@@ -1,0 +1,101 @@
+VT0002,Thép Việt Nhật,Cây,800
+VT0003,Gạch ống 4 lỗ,Viên,5000
+VT0004,Gạch thẻ 6x10,Viên,3000
+VT0005,Đá 1x2,m³,1200
+VT0006,Cát vàng,m³,800
+VT0007,Cát đen,m³,600
+VT0008,Sơn Dulux,Thùng,400
+VT0009,Sơn Jotun,Thùng,350
+VT0010,Gỗ thông tấm,Tấm,200
+VT0011,Gỗ căm xe,Tấm,150
+VT0012,Tôn lạnh 3 dem,Tấm,600
+VT0013,Tôn màu 4 dem,Tấm,550
+VT0014,Ống nước PVC 21, Cây,300
+VT0015,Ống nước PVC 27, Cây,350
+VT0016,Ống nước PVC 34, Cây,400
+VT0017,Co PVC 21,Cái,50
+VT0018,Co PVC 27,Cái,60
+VT0019,Co PVC 34,Cái,70
+VT0020,Tê PVC 21,Cái,45
+VT0021,Tê PVC 27,Cái,55
+VT0022,Tê PVC 34,Cái,65
+VT0023,Van cổng 21,Cái,120
+VT0024,Van cổng 27,Cái,140
+VT0025,Van cổng 34,Cái,160
+VT0026,Bóng đèn LED 9W,Cái,2000
+VT0027,Bóng đèn LED 12W,Cái,2200
+VT0028,Bóng đèn LED 18W,Cái,2500
+VT0029,Đui đèn E27,Cái,500
+VT0030,Công tắc 2 cực,Cái,300
+VT0031,Công tắc 3 cực,Cái,350
+VT0032,Ổ cắm 2 lỗ,Cái,400
+VT0033,Ổ cắm 3 lỗ,Cái,450
+VT0034,Áptomat 20A,Cái,800
+VT0035,Áptomat 32A,Cái,950
+VT0036,Áptomat 40A,Cái,1100
+VT0037,Dây điện 2.5mm,Cuộn,1200
+VT0038,Dây điện 4.0mm,Cuộn,1800
+VT0039,Dây điện 6.0mm,Cuộn,2400
+VT0040,Ống luồn dây 21, Cây,250
+VT0041,Ống luồn dây 27, Cây,300
+VT0042,Ống luồn dây 34, Cây,350
+VT0043,Keo dán ống,Cây,150
+VT0044,Băng tan 2cm,Cuộn,200
+VT0045,Băng tan 3cm,Cuộn,250
+VT0046,Bulong 8x50,Cái,25
+VT0047,Bulong 10x60,Cái,30
+VT0048,Bulong 12x70,Cái,35
+VT0049,Êcu 8mm,Cái,5
+VT0050,Êcu 10mm,Cái,7
+VT0051,Êcu 12mm,Cái,9
+VT0052,Long đen 8mm,Cái,3
+VT0053,Long đen 10mm,Cái,4
+VT0054,Long đen 12mm,Cái,5
+VT0055,Vít gỗ 3x30,Cái,2
+VT0056,Vít gỗ 4x40,Cái,3
+VT0057,Vít gỗ 5x50,Cái,4
+VT0058,Vít thép 4x20,Cái,2
+VT0059,Vít thép 5x25,Cái,3
+VT0060,Vít thép 6x30,Cái,4
+VT0061,Bê tông tươi,m³,1800
+VT0062,Vữa xây,m³,900
+VT0063,Vữa trát,m³,850
+VT0064,Gạch men 30x30,Viên,800
+VT0065,Gạch men 40x40,Viên,1100
+VT0066,Gạch men 50x50,Viên,1500
+VT0067,Gạch men 60x60,Viên,2000
+VT0068,Keo dán gạch,Bao,450
+VT0069,Vít nở 8mm,Cái,15
+VT0070,Vít nở 10mm,Cái,18
+VT0071,Vít nở 12mm,Cái,22
+VT0072,Tấm lợp fibro,Tấm,350
+VT0073,Tấm lợp poly,Tấm,400
+VT0074,Mái ngói 22 viên,m²,1200
+VT0075,Mái ngói 11 viên,m²,1500
+VT0076,Phụ gia chống thấm,Bao,280
+VT0077,Phụ gia tăng cứng,Bao,320
+VT0078,Chỉ khoan 6mm,Cái,80
+VT0079,Chỉ khoan 8mm,Cái,90
+VT0080,Chỉ khoan 10mm,Cái,100
+VT0081,Mũi khoan 6mm,Cái,45
+VT0082,Mũi khoan 8mm,Cái,55
+VT0083,Mũi khoan 10mm,Cái,65
+VT0084,Máy trộn vữa,Cái,8
+VT0085,Máy cắt sắt,Cái,12
+VT0086,Máy khoan bê tông,Cái,15
+VT0087,Máy mài góc,Cái,10
+VT0088,Máy cưa đĩa,Cái,18
+VT0089,Thiết bị bảo hộ,Bộ,25
+VT0090,Găng tay bảo hộ,Đôi,5
+VT0091,Kính bảo hộ,Cái,3
+VT0092,Mũ bảo hộ,Cái,4
+VT0093,Giày bảo hộ,Đôi,12
+VT0094,Quần áo bảo hộ,Bộ,8
+VT0095,Khẩu trang bụi,Hộp,2
+VT0096,Bình chữa cháy,Bình,35
+VT0097,Báo khói,Cái,15
+VT0098,Chuông báo cháy,Cái,20
+VT0099,Đèn exit,Cái,25
+VT0100,Bình ắc quy,Cái,30
+VT0200,kmgglvkgrls,VNĐ,5
+VT0200,kmgglvkgrls,VNĐ,5
