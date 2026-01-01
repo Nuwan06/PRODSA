@@ -446,6 +446,48 @@ struct Date{
             return -1;
         } return n;
     }
+//bang chữ cái tiếng việt
+static string bangChuCaiTV() {
+        return "aăâbcdđeêghiklmnoôơpqrstuưvxy";
+    }
+
+    static int viTriChu(string c) {
+        if (c.length() == 0) return 100;
+
+        char ch = c[0];
+        if (ch >= 'A' && ch <= 'Z')
+            ch += 32;
+
+        string bang = bangChuCaiTV();
+        for (int i = 0; i < bang.length(); i++) {
+            if (bang[i] == ch)
+                return i;
+        }
+        return 100; 
+    }
+
+    static int soSanhChuoiTV(string a, string b) {
+        int na = a.length();
+        int nb = b.length();
+        int n = (na < nb) ? na : nb;
+
+        for (int i = 0; i < n; i++) {
+            string ca = "";
+            string cb = "";
+            ca += a[i];
+            cb += b[i];
+
+            int va = viTriChu(ca);
+            int vb = viTriChu(cb);
+
+            if (va < vb) return -1;
+            if (va > vb) return 1;
+        }
+
+        if (na < nb) return -1;
+        if (na > nb) return 1;
+        return 0;
+    }
 };
 
 
@@ -2115,5 +2157,6 @@ int main() {
   
 
    
+
 
 
