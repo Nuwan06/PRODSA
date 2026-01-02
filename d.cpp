@@ -1133,6 +1133,53 @@ string filechitiethoadon;
         } return 0;
 
     }
+   //hàm sửa nhân viên
+   bool suaNhanVien(string maNV, string hoMoi, string tenMoi, string phaiMoi) {
+        for(int i = 0; i <= dsnv.n; i++) {
+            if(dsnv.nodes[i]->MANV == maNV) {
+                dsnv.nodes[i]->HO = hoMoi;
+                dsnv.nodes[i]->TEN = tenMoi;
+                dsnv.nodes[i]->PHAI = phaiMoi;
+                return true;
+            }
+        }
+        return false;
+    }
+//hamf xóa nhân viên
+bool xoaNhanVien(string maNV) {
+        for(int i = 0; i <= dsnv.n; i++) {
+            if(dsnv.nodes[i]->MANV == maNV) {
+
+                // Xóa danh sách hóa đơn
+                PTRHD hd = dsnv.nodes[i]->dshd;
+                while(hd != NULL) {
+                    PTRCTHD ct = hd->hd.dscthd;
+                    while(ct != NULL) {
+                        PTRCTHD tempCT = ct;
+                        ct = ct->next;
+                        delete tempCT;
+                    }
+                    PTRHD tempHD = hd;
+                    hd = hd->next;
+                    delete tempHD;
+                }
+
+                // Xóa nhân viên
+                delete dsnv.nodes[i];
+
+                // Dồn mảng DSNV
+                for(int j = i; j < dsnv.n; j++) {
+                    dsnv.nodes[j] = dsnv.nodes[j + 1];
+                }
+
+                dsnv.nodes[dsnv.n] = NULL;
+                dsnv.n--;
+
+                return true;
+            }
+        }
+        return false;
+    }
     bool timmkiemthomahoadon(string mahd) {
         PTRHD temp = Temp.dshd;
         while(temp!=NULL) {
@@ -2157,6 +2204,7 @@ int main() {
   
 
    
+
 
 
 
