@@ -1070,6 +1070,11 @@ string filechitiethoadon;
         int thang = 0;
         long long doanhthuthang  =0;
     };
+    struct DoanhThuVT
+    {
+        string maVt;
+        double doanhthu;
+    };     
     nam Nam[12];
     DSNV dsnv;
     NhanVien tnv;
@@ -1090,7 +1095,7 @@ string filechitiethoadon;
         filechitiethoadon = Filechitiethoadon;
         mofile();
     }
-
+   
         void insert_order(int n, NhanVien* node[]) {
              for(int i = 0; i < dsnv.n; i++) {
                 if(dsnv.nodes[dsnv.n]->TEN[0] < dsnv.nodes[i]->TEN[0]) {
@@ -1191,6 +1196,51 @@ bool xoaNhanVien(string maNV) {
         }
         return 0;
 
+    }
+   //hàm thống kê doanh thu 
+    double tinhDoanhThuCT(const CT_HoaDon& ct) 
+    {  
+    return ct.soluong * ct.DONGIA * (1 + ct.VAT / 100.0);
+    }
+    void thongKeDoanhThuTheoNam(int namThongKe) {
+        for (int i = 0; i < 12; i++) {
+            Nam[i].thang = i + 1;
+            Nam[i].doanhthuthang = 0;
+        }
+
+        bool coDuLieu = false;
+
+        for (int i = 0; i <= dsnv.n; i++) {
+            PTRHD hd = dsnv.nodes[i]->dshd;
+            while (hd != NULL) {
+                if (hd->hd.NgayLapHoaDon.year == namThongKe) {
+                    coDuLieu = true;
+                    int thang = hd->hd.NgayLapHoaDon.month;
+
+                    PTRCTHD ct = hd->hd.dscthd;
+                    while (ct != NULL) {
+                        Nam[thang - 1].doanhthuthang += tinhDoanhThuCT(ct);
+                        ct = ct->next;
+                    }
+                }
+                hd = hd->next;
+            }
+        }
+
+        if (!coDuLieu) {
+            cout << "Nam " << namThongKe << " khong co du lieu hoa don!\n";
+            return;
+        }
+
+        long long tongNam = 0;
+        cout << "\nDOANH THU NAM " << namThongKe << ":\n";
+        for (int i = 0; i < 12; i++) {
+            cout << "Thang " << Nam[i].thang
+                 << ": " << Nam[i].doanhthuthang << endl;
+            tongNam += Nam[i].doanhthuthang;
+        }
+        cout << "--------------------------\n";
+        cout << "TONG DOANH THU CA NAM: " << tongNam << endl;
     }
     void indsnvtheoten(int v, int n) {
         int cot = 0;
@@ -2204,6 +2254,7 @@ int main() {
   
 
    
+
 
 
 
