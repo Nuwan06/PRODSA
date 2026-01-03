@@ -1096,19 +1096,29 @@ string filechitiethoadon;
         mofile();
     }
    
-        void insert_order(int n, NhanVien* node[]) {
-             for(int i = 0; i < dsnv.n; i++) {
-                if(dsnv.nodes[dsnv.n]->TEN[0] < dsnv.nodes[i]->TEN[0]) {
-                    swap(dsnv.nodes[dsnv.n], dsnv.nodes[i]);
-                    return;
-                } else if (dsnv.nodes[dsnv.n]->TEN[0] == dsnv.nodes[i]->TEN[0]){
-                    if(dsnv.nodes[dsnv.n]->HO[0] < dsnv.nodes[i]->HO[0]) {
-                        swap(dsnv.nodes[dsnv.n] , dsnv.nodes[i]);
-                        return;
-                    }
+       void insert_order() 
+      {      
+        int i = dsnv.n - 1;                 // bắt đầu từ phần tử trước phần tử mới
+        NhanVien* moi = dsnv.nodes[dsnv.n]; // nhân viên vừa thêm
 
-                }
+        // Dịch mảng sang phải cho tới khi tìm đúng vị trí
+          while (i >= 0) {
+          // So sánh theo TÊN trước
+            if (dsnv.nodes[i]->TEN > moi->TEN ||
+               (dsnv.nodes[i]->TEN == moi->TEN &&
+                dsnv.nodes[i]->HO > moi->HO)) {
+
+                dsnv.nodes[i + 1] = dsnv.nodes[i];
+                i--;
+              } 
+			else 
+			{
+            break;
             }
+         }  
+
+       dsnv.nodes[i + 1] = moi;
+}
 
         }
 
@@ -2254,6 +2264,7 @@ int main() {
   
 
    
+
 
 
 
