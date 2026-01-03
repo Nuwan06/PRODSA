@@ -9,3 +9,6 @@ NV008,Bùi Thị,Lan,Nữ
 NV009,Đỗ Văn,Minh,Nam
 NV010,Ngô Thị,Nga,Nữ
 NV011,trầN thanh,Nhuận,Nam
+NV012,Nguyễn Thanh,Tú,Nam
+NV013,Nguyễn Ngọc,Toàn,Nam
+NV0134,Nguyễn Gia,Hiển,Nam
