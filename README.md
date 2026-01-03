@@ -1,106 +1,122 @@
-ĐỒ ÁN QUẢN LÝ NHẬP XUẤT VẬT TƯ
+DỰ ÁN QUẢN LÝ NHẬP XUẤT VẬT TƯ
 1. Giới thiệu
-Đây là chương trình Quản lý nhập – xuất vật tư được xây dựng nhằm hỗ trợ quản lý kho hàng, nhân viên và hóa đơn nhập/xuất.
-Chương trình cho phép cập nhật vật tư, nhân viên, lập hóa đơn, thống kê doanh thu và báo cáo theo nhiều tiêu chí khác nhau.
-2. Cấu trúc dữ liệu sử dụng
-2.1. Danh sách Vật tư
-Lưu trữ bằng cây nhị phân tìm kiếm cân bằng (AVL)
-Thuộc tính:
-MAVT (C10)
-TENVT
-DVT (Đơn vị tính)
-Soluongton
-2.2. Danh sách Nhân viên
-Lưu bằng mảng con trỏ (tối đa 500 nhân viên)
-Thuộc tính:
-MANV
-HO
-TEN
-PHAI
-dshd (con trỏ đến danh sách hóa đơn của nhân viên)
-Danh sách luôn tăng dần theo tên, nếu trùng tên thì tăng theo họ.
-2.3. Danh sách Hóa đơn
-Danh sách liên kết đơn
-Thuộc tính:
-SoHD (C20)
-NgayLap
-Loai (N – Nhập, X – Xuất)
-dscthd (con trỏ đến danh sách chi tiết hóa đơn)
-2.4. Danh sách Chi tiết hóa đơn
-Danh sách liên kết đơn
-Thuộc tính:
-MAVT
-Soluong
-Dongia
-%VAT
-3. Các chức năng của chương trình
-a. Quản lý vật tư
-Thêm / xóa / hiệu chỉnh vật tư
-Chỉ cho phép nhập số lượng tồn khi thêm vật tư mới
-b. In danh sách vật tư tồn kho
-In ra theo thứ tự tên vật tư tăng dần
-Kết xuất:
-Sao chép mã
-
-Mã VT | Tên vật tư | Đơn vị tính | Số lượng tồn
-c. Quản lý nhân viên
-Thêm, cập nhật thông tin nhân viên
-Không cho phép các trường mã, họ, tên, phái rỗng
-Danh sách tăng dần theo tên, nếu trùng thì theo họ
-d. In danh sách nhân viên
-In theo thứ tự tăng dần tên → họ
-Mỗi nhân viên một dòng
-e. Lập hóa đơn nhập / xuất
-Nhập: số hóa đơn, ngày lập, loại (N hoặc X)
-Nhập các vật tư cho hóa đơn
+Dự án Quản lý nhập xuất vật tư mô phỏng hệ thống quản lý kho hàng trong doanh nghiệp.
+Chương trình hỗ trợ quản lý vật tư, nhân viên, lập hóa đơn nhập – xuất, tự động cập nhật tồn kho và thống kê doanh thu theo thời gian.
+2. Cấu trúc dữ liệu
+🔹 Danh sách Vật tư
+Cấu trúc: Cây nhị phân tìm kiếm cân bằng (AVL)
+Thông tin lưu trữ:
+Mã vật tư (MAVT – C10)
+Tên vật tư
+Đơn vị tính (DVT)
+Số lượng tồn
+🔹 Danh sách Nhân viên
+Cấu trúc: Danh sách tuyến tính – mảng con trỏ
+Số lượng tối đa: 500 nhân viên
+Thông tin lưu trữ:
+Mã nhân viên (MANV)
+Họ
+Tên
+Phái
+Con trỏ dshd trỏ đến danh sách hóa đơn do nhân viên lập
+Danh sách nhân viên luôn được sắp xếp tăng dần theo tên, nếu trùng tên thì tăng theo họ.
+🔹 Danh sách Hóa đơn
+Cấu trúc: Danh sách liên kết đơn
+Thông tin lưu trữ:
+Số hóa đơn (SoHD – C20)
+Ngày lập hóa đơn
+Loại hóa đơn:
+N: Phiếu nhập
+X: Phiếu xuất
+Con trỏ dscthd trỏ đến danh sách chi tiết hóa đơn
+🔹 Danh sách Chi tiết hóa đơn
+Cấu trúc: Danh sách liên kết đơn
+Thông tin lưu trữ:
+Mã vật tư (MAVT)
+Số lượng
+Đơn giá
+% VAT
+3. Chức năng của chương trình
+Cập nhật thông tin vật tư (thêm, xóa, hiệu chỉnh)
+In danh sách vật tư tồn kho theo thứ tự tên tăng dần
+Cập nhật và in danh sách nhân viên theo thứ tự quy định
+Lập hóa đơn nhập / xuất và tự động cập nhật tồn kho
+In hóa đơn theo số hóa đơn
+Thống kê hóa đơn theo khoảng thời gian
+Thống kê vật tư có doanh thu cao
+Thống kê doanh thu theo từng tháng trong năm
+4. Mô tả chi tiết một số chức năng
+📄 Lập hóa đơn nhập / xuất
+Nhập số hóa đơn, ngày lập và loại hóa đơn (N hoặc X)
+Cho phép nhập nhiều vật tư cho một hóa đơn
 Tự động cập nhật số lượng tồn:
 Phiếu nhập → tăng tồn
 Phiếu xuất → giảm tồn
-Nếu xuất vượt tồn kho → báo lỗi và hiển thị số lượng hiện có
-Chỉ được xóa vật tư khi đang lập hóa đơn
-Khi hóa đơn đã ghi → không được chỉnh sửa
-f. In hóa đơn
-In theo số hóa đơn nhập vào
-Kết xuất:
-Sao chép mã
-
-Ngày lập, Họ tên NV, Loại HĐ
-Tên vật tư, Số lượng, Đơn giá, Trị giá
+Nếu số lượng xuất lớn hơn số lượng tồn → báo lỗi và hiển thị tồn kho hiện có
+Chỉ cho phép xóa vật tư khi đang lập hóa đơn
+Sau khi hóa đơn được ghi, không cho phép chỉnh sửa
+🖨️ In hóa đơn
+In hóa đơn theo số hóa đơn do người dùng nhập
+Nội dung hiển thị:
+Ngày lập hóa đơn
+Họ tên nhân viên lập
+Loại hóa đơn
+Danh sách vật tư: tên vật tư, số lượng, đơn giá, trị giá
 Tổng trị giá hóa đơn
-g. Thống kê hóa đơn theo khoảng thời gian
-Nhập: từ ngày – đến ngày
-In ra các hóa đơn trong khoảng đó
+📊 Thống kê hóa đơn theo khoảng thời gian
+Nhập ngày bắt đầu và ngày kết thúc
+In ra các hóa đơn được lập trong khoảng thời gian đó
 Kết xuất:
 Sao chép mã
 
-Số HĐ | Ngày lập | Loại | Họ tên NV | Trị giá hóa đơn
-h. In 10 vật tư có doanh thu cao nhất
-Thống kê trong khoảng thời gian do người dùng nhập
-i. Thống kê doanh thu theo tháng trong năm
-Nhập năm cần thống kê
-Kết xuất:
-Sao chép mã
+BẢNG LIỆT KÊ CÁC HÓA ĐƠN TRONG KHOẢNG THỜI GIAN
+Từ ngày: ##/##/####     Đến ngày: ##/##/####
 
-BẢNG THỐNG KÊ DOANH THU NĂM ####
-Tháng | Doanh thu
-4. Lưu trữ dữ liệu
+Số HĐ | Ngày lập | Loại HĐ | Họ tên NV lập | Trị giá hóa đơn
+5. Lưu trữ và kiểm tra dữ liệu
 Chương trình cho phép lưu và đọc dữ liệu từ file
-Đảm bảo dữ liệu không bị mất khi thoát chương trình
-5. Kiểm tra và ràng buộc dữ liệu
-Kiểm tra dữ liệu rỗng
-Kiểm tra trùng mã
+Kiểm tra các điều kiện nhập:
+Không cho phép dữ liệu rỗng
+Không cho trùng mã vật tư, mã nhân viên, số hóa đơn
 Kiểm tra số lượng xuất không vượt tồn kho
-Kiểm tra định dạng ngày tháng hợp lệ
-6. Phân công công việc
-Thành viên
-Chức năng đảm nhận
-Toàn
-e, f, g
-Nhuận
-a, b, h
-Tú
-c, d, i
-7. Ngôn ngữ & Môi trường
-Ngôn ngữ: C / C++
-Mô hình dữ liệu: Cây AVL, danh sách liên kết đơn, mảng con trỏ
-Chạy trên môi trường console
+Kiểm tra định dạng ngày hợp lệ
+6. Phân công thực hiện
+NGUYỄN NGỌC TOÀN:
+Lập hóa đơn nhập và xuất
+In hóa đơn
+Thống kê hóa đơn theo khoảng thời gian
+TRẦN THANH NHUẬN:
+Cập nhật thông tin vật tư
+In danh sách vật tư tồn kho
+Thống kê 10 vật tư có doanh thu cao nhất
+NGUYỄN THANH TÚ:
+Cập nhật thông tin nhân viên
+In danh sách nhân viên
+Thống kê doanh thu theo từng tháng trong năm
+7. Ngôn ngữ và công cụ
+Ngôn ngữ lập trình: C / C++
+Cấu trúc dữ liệu: AVL Tree, Linked List, Mảng con trỏ
+Xử lý file: fstream
+Xử lý chuỗi: stringstream
+Chương trình chạy trên môi trường console
+8. TÀI LIỆU THAM KHẢO
+[1] Tham khảo ngôn ngữ C++, cppreference.com.
+Truy cập tại: https://en.cppreference.com/w/cpp
+[2] Luồng tệp trong C++, cplusplus.com.
+Truy cập tại: https://cplusplus.com/doc/tutorial/files/
+[3] Luồng chuỗi trong C++, GeeksforGeeks.
+Truy cập tại: https://www.geeksforgeeks.org/stringstream-c-applications/
+[4] Tạo số ngẫu nhiên trong C++, GeeksforGeeks.
+Truy cập tại: https://www.geeksforgeeks.org/generated-random-number-cpp/
+[5] std::vector, cppreference.com.
+Truy cập tại: https://en.cppreference.com/w/cpp/container/vector
+[6] Tiện ích thời gian trong C++, cppreference.com.
+Truy cập tại: https://en.cppreference.com/w/cpp/chrono/c/time
+[7] Các thao tác nhập xuất trong C++ (iomanip), cppreference.com.
+Truy cập tại: https://en.cppreference.com/w/cpp/io/manip
+[8] Structs and Classes in C++, Programiz.
+Truy cập tại: https://www.programiz.com/cpp-programming/structure
+[9] Hàm system() trong C++, cplusplus.com.
+Truy cập tại: https://cplusplus.com/reference/cstdlib/system/
+[10] Hashing Data Structure, GeeksforGeeks.
+Truy cập tại: https://www.geeksforgeeks.org/hashing-data-structure/
