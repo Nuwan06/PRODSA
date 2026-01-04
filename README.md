@@ -76,7 +76,7 @@ Tìm kiếm nhanh theo mã vật tư O(log N)
 
 Không cần xoay AVL phức tạp
 
-3.2. Danh sách Nhân viên (Mảng con trỏ)
+### 3.2. Danh sách Nhân viên (Mảng con trỏ)
 cpp
 Sao chép mã
 struct NhanVien {
