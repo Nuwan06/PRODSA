@@ -124,14 +124,14 @@ struct nodeHD {
 - X: Phiếu xuất
 
 ### 3.4. Danh sách Chi tiết hóa đơn
-cpp
-Sao chép mã
+```cpp
 struct CT_HoaDon {
     char MAVT[10];
     int soluong;
     float DONGIA;
     float VAT;
 };
+```
 ## 4. Thiết kế chức năng và luồng xử lý
 ### 4.1. Giao diện menu
 - Điều khiển bằng phím mũi tên + Enter
@@ -242,10 +242,35 @@ bash
 
 - Chuẩn hóa định dạng file dữ liệu
 
-### TÀI LIỆU THAM KHẢO
+## TÀI LIỆU THAM KHẢO
 
-[1] https://en.cppreference.com/w/
-[2] https://cplusplus.com/doc/tutorial/files/
-[3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-[4] https://www.geeksforgeeks.org/data-structures/linked-list/
-[5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
+[1] *C++ Language Reference*, cppreference.com.  
+Truy cập tại: https://en.cppreference.com/w/
+
+[2] *File Streams in C++*, cplusplus.com.  
+Truy cập tại: https://cplusplus.com/doc/tutorial/files/
+
+[3] *Binary Search Tree (BST) in C++*, GeeksforGeeks.  
+Truy cập tại: https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+
+[4] *Linked List Data Structure*, GeeksforGeeks.  
+Truy cập tại: https://www.geeksforgeeks.org/data-structures/linked-list/
+
+[5] *Array of Pointers in C++*, GeeksforGeeks.  
+Truy cập tại: https://www.geeksforgeeks.org/array-of-pointers-in-c/
+
+[6] *Sorting in C++ (STL)*, GeeksforGeeks.  
+Truy cập tại: https://www.geeksforgeeks.org/sort-c-stl/
+
+[7] *Date and Time in C++*, cppreference.com.  
+Truy cập tại: https://en.cppreference.com/w/cpp/chrono
+
+[8] *Structs and Classes in C++*, Programiz.  
+Truy cập tại: https://www.programiz.com/cpp-programming/structure
+
+[9] *Console Input/Output in C++*, cplusplus.com.  
+Truy cập tại: https://cplusplus.com/reference/cstdlib/system/
+
+[10] *Ứng dụng cấu trúc dữ liệu trong quản lý kho*,  
+Tài liệu học phần **Cấu trúc dữ liệu & Giải thuật**.
+
