@@ -1,9 +1,15 @@
  DỰ ÁN 4: QUẢN LÝ NHẬP XUẤT VẬT TƯ
+
+
+ 
 1. Giới thiệu
 Dự án Quản lý nhập xuất vật tư mô phỏng hệ thống quản lý kho hàng trong doanh nghiệp.
 Chương trình hỗ trợ quản lý vật tư, nhân viên, lập hóa đơn nhập – xuất, tự động cập nhật tồn kho và thống kê doanh thu theo thời gian.
-2. Cấu trúc dữ liệu
+
+
+3. Cấu trúc dữ liệu
 🔹 Danh sách Vật tư.
+
 Cấu trúc: Cây nhị phân tìm kiếm cân bằng (AVL)
 Thông tin lưu trữ:
 Mã vật tư (MAVT – C10)
@@ -36,7 +42,9 @@ Mã vật tư (MAVT)
 Số lượng
 Đơn giá
 % VAT
-3. Chức năng của chương trình
+
+
+5. Chức năng của chương trình
 Cập nhật thông tin vật tư (thêm, xóa, hiệu chỉnh)
 In danh sách vật tư tồn kho theo thứ tự tên tăng dần
 Cập nhật và in danh sách nhân viên theo thứ tự quy định
@@ -45,7 +53,9 @@ In hóa đơn theo số hóa đơn
 Thống kê hóa đơn theo khoảng thời gian
 Thống kê vật tư có doanh thu cao
 Thống kê doanh thu theo từng tháng trong năm
-4. Mô tả chi tiết một số chức năng
+
+
+7. Mô tả chi tiết một số chức năng
 📄 Lập hóa đơn nhập / xuất
 Nhập số hóa đơn, ngày lập và loại hóa đơn (N hoặc X)
 Cho phép nhập nhiều vật tư cho một hóa đơn
@@ -55,6 +65,8 @@ Phiếu xuất → giảm tồn
 Nếu số lượng xuất lớn hơn số lượng tồn → báo lỗi và hiển thị tồn kho hiện có
 Chỉ cho phép xóa vật tư khi đang lập hóa đơn
 Sau khi hóa đơn được ghi, không cho phép chỉnh sửa
+
+
 🖨️ In hóa đơn
 In hóa đơn theo số hóa đơn do người dùng nhập
 Nội dung hiển thị:
@@ -67,12 +79,17 @@ Tổng trị giá hóa đơn
 Nhập ngày bắt đầu và ngày kết thúc
 In ra các hóa đơn được lập trong khoảng thời gian đó
 Kết xuất:
-Sao chép mã
+
+
 
 BẢNG LIỆT KÊ CÁC HÓA ĐƠN TRONG KHOẢNG THỜI GIAN
 Từ ngày: ##/##/####     Đến ngày: ##/##/####
 
+
+
 Số HĐ | Ngày lập | Loại HĐ | Họ tên NV lập | Trị giá hóa đơn
+
+
 5. Lưu trữ và kiểm tra dữ liệu
 Chương trình cho phép lưu và đọc dữ liệu từ file
 Kiểm tra các điều kiện nhập:
@@ -80,20 +97,31 @@ Không cho phép dữ liệu rỗng
 Không cho trùng mã vật tư, mã nhân viên, số hóa đơn
 Kiểm tra số lượng xuất không vượt tồn kho
 Kiểm tra định dạng ngày hợp lệ
-6. Phân công thực hiện
+
+
+7. Phân công thực hiện
 NGUYỄN NGỌC TOÀN:
+
+
 Lập hóa đơn nhập và xuất
 In hóa đơn
 Thống kê hóa đơn theo khoảng thời gian
 TRẦN THANH NHUẬN:
+
+
 Cập nhật thông tin vật tư
 In danh sách vật tư tồn kho
 Thống kê 10 vật tư có doanh thu cao nhất
 NGUYỄN THANH TÚ:
+
+
 Cập nhật thông tin nhân viên
 In danh sách nhân viên
 Thống kê doanh thu theo từng tháng trong năm
-7. Ngôn ngữ và công cụ
+
+
+
+9. Ngôn ngữ và công cụ
 Ngôn ngữ lập trình: C / C++
 Cấu trúc dữ liệu: AVL Tree, Linked List, Mảng con trỏ
 Xử lý file: fstream
