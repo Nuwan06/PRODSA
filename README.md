@@ -3,7 +3,7 @@
 Dự án Quản lý nhập xuất vật tư mô phỏng hệ thống quản lý kho hàng trong doanh nghiệp.
 Chương trình hỗ trợ quản lý vật tư, nhân viên, lập hóa đơn nhập – xuất, tự động cập nhật tồn kho và thống kê doanh thu theo thời gian.
 2. Cấu trúc dữ liệu
-🔹 Danh sách Vật tư
+🔹 Danh sách Vật tư.
 Cấu trúc: Cây nhị phân tìm kiếm cân bằng (AVL)
 Thông tin lưu trữ:
 Mã vật tư (MAVT – C10)
