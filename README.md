@@ -77,8 +77,8 @@ struct nodeVT {
 
 - Không cần xoay AVL phức tạp
 
-### 3.2. Danh sách Nhân viên (Mảng con trỏ)
-cpp
+## 3.2. Danh sách Nhân viên (Mảng con trỏ)
+``` cpp
 struct NhanVien {
     int MANV;
     char HO[20];
@@ -91,6 +91,7 @@ struct DSNV {
     int n;
     NhanVien* nodes[MAX_NHANVIEN];
 };
+```
 - Danh sách nhân viên luôn được sắp:
 
 - Theo tên tăng dần
@@ -99,9 +100,8 @@ struct DSNV {
 
 - Thực hiện bằng hàm insert_order()
 
-## 3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
-cpp
-Sao chép mã
+### 3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
+``` cpp
 struct HoaDon {
     char SoHD[20];
     Date NgayLapHoaDon;
@@ -114,6 +114,7 @@ struct nodeHD {
     HoaDon hd;
     nodeHD* next;
 };
+```
 - Mỗi nhân viên có danh sách hóa đơn riêng
 
 - Loai:
@@ -122,7 +123,7 @@ struct nodeHD {
 
 - X: Phiếu xuất
 
-## 3.4. Danh sách Chi tiết hóa đơn
+### 3.4. Danh sách Chi tiết hóa đơn
 cpp
 Sao chép mã
 struct CT_HoaDon {
@@ -131,30 +132,30 @@ struct CT_HoaDon {
     float DONGIA;
     float VAT;
 };
-### 4. Thiết kế chức năng và luồng xử lý
-## 4.1. Giao diện menu
+## 4. Thiết kế chức năng và luồng xử lý
+### 4.1. Giao diện menu
 - Điều khiển bằng phím mũi tên + Enter
 
 - Có phân trang khi in danh sách
 
-## 4.2. Nhập & in vật tư
+### 4.2. Nhập & in vật tư
 - Kiểm tra định dạng mã vật tư VTxxxx
 
 - In danh sách theo mã hoặc theo tên
 
-## 4.3. Nhập & in nhân viên
+### 4.3. Nhập & in nhân viên
 - Không cho phép dữ liệu rỗng
 
 - Luôn duy trì thứ tự danh sách
 
-4.4. Lập hóa đơn nhập / xuất
-Nhập số hóa đơn, ngày lập, loại
+### 4.4. Lập hóa đơn nhập / xuất
+- Nhập số hóa đơn, ngày lập, loại
 
-Tự động cập nhật số lượng tồn kho
+- Tự động cập nhật số lượng tồn kho
 
-Thiếu hàng → báo lỗi và hiển thị số lượng tồn hiện có
+- Thiếu hàng → báo lỗi và hiển thị số lượng tồn hiện có
 
-4.5. In hóa đơn
+### 4.5. In hóa đơn
 In chi tiết từng vật tư trong hóa đơn
 
 Tính và in tổng trị giá hóa đơn
