@@ -213,13 +213,6 @@ bash
 - Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
 
 ## 7. Thành viên tham gia & Phân công công việc
-### 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
-- Lập hóa đơn nhập / xuất
-
-- In hóa đơn
-
-- Thống kê hóa đơn theo thời gian
-
 ### 🔹 Trần Thanh Nhuận – Quản lý Vật tư
 - Nhập và cập nhật vật tư
 
@@ -231,6 +224,12 @@ bash
 - Nhập và in danh sách nhân viên
 
 - Thống kê doanh thu theo năm
+### 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
+- Lập hóa đơn nhập / xuất
+
+- In hóa đơn
+
+- Thống kê hóa đơn theo thời gian
 
 ## 8. Kết luận – Hướng phát triển
 - Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
@@ -244,6 +243,7 @@ bash
 - Chuẩn hóa định dạng file dữ liệu
 
 ### TÀI LIỆU THAM KHẢO
+
 [1] https://en.cppreference.com/w/
 [2] https://cplusplus.com/doc/tutorial/files/
 [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
