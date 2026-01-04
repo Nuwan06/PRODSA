@@ -156,94 +156,96 @@ struct CT_HoaDon {
 - Thiếu hàng → báo lỗi và hiển thị số lượng tồn hiện có
 
 ### 4.5. In hóa đơn
-In chi tiết từng vật tư trong hóa đơn
+- In chi tiết từng vật tư trong hóa đơn
 
-Tính và in tổng trị giá hóa đơn
+- Tính và in tổng trị giá hóa đơn
 
 4.6. Thống kê hóa đơn theo khoảng thời gian
 Nhập từ ngày – đến ngày
 
-Lọc và in danh sách hóa đơn theo dạng bảng
+- Lọc và in danh sách hóa đơn theo dạng bảng
 
 4.7. Top 10 vật tư có doanh thu cao nhất
-Gom doanh thu theo mã vật tư
+- Gom doanh thu theo mã vật tư
 
-Sắp xếp giảm dần và in 10 vật tư cao nhất
+- Sắp xếp giảm dần và in 10 vật tư cao nhất
 
 4.8. Thống kê doanh thu theo năm
-Nhập năm cần thống kê
+- Nhập năm cần thống kê
 
-Cộng doanh thu theo từng tháng
+- Cộng doanh thu theo từng tháng
 
 5. Lưu và đọc file dữ liệu
 5.1. Ghi file
-Ghi danh sách nhân viên
+- Ghi danh sách nhân viên
 
-Ghi danh sách hóa đơn
+- Ghi danh sách hóa đơn
 
-Ghi chi tiết hóa đơn
+- Ghi chi tiết hóa đơn
 
-Sử dụng ký hiệu . để kết thúc mỗi danh sách
+- Sử dụng ký hiệu . để kết thúc mỗi danh sách
 
 5.2. Đọc file
-Đọc danh sách nhân viên
+- Đọc danh sách nhân viên
 
-Đọc hóa đơn theo từng nhân viên
+- Đọc hóa đơn theo từng nhân viên
 
-Đọc chi tiết hóa đơn theo số hóa đơn
+- Đọc chi tiết hóa đơn theo số hóa đơn
 
 6. Cài đặt và chạy chương trình
 6.1. Yêu cầu hệ thống
+```cpp
 Trình biên dịch C++ (g++, clang++, Visual Studio)
-
-Hệ điều hành Windows (khuyến nghị)
+```
+- Hệ điều hành Windows (khuyến nghị)
 
 6.2. Biên dịch
+```cpp
 bash
-Sao chép mã
 g++ d.cpp -o ql_vattu
 6.3. Chạy chương trình
-bash
-Sao chép mã
-./ql_vattu
-Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
-Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
+```
 ```cpp
+bash
+./ql_vattu
+```
+- Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
+- Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
 
-### 7. Thành viên tham gia & Phân công công việc
-🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
-Lập hóa đơn nhập / xuất
+## 7. Thành viên tham gia & Phân công công việc
+### 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
+- Lập hóa đơn nhập / xuất
 
-In hóa đơn
+- In hóa đơn
 
-Thống kê hóa đơn theo thời gian
+- Thống kê hóa đơn theo thời gian
 
-🔹 Trần Thanh Nhuận – Quản lý Vật tư
-Nhập và cập nhật vật tư
+### 🔹 Trần Thanh Nhuận – Quản lý Vật tư
+- Nhập và cập nhật vật tư
 
-In danh sách vật tư tồn kho
+- In danh sách vật tư tồn kho
 
-Top 10 vật tư doanh thu cao nhất
+- Top 10 vật tư doanh thu cao nhất
 
-🔹 Nguyễn Thanh Tú – Quản lý Nhân viên & Doanh thu
-Nhập và in danh sách nhân viên
+### 🔹 Nguyễn Thanh Tú – Quản lý Nhân viên & Doanh thu
+- Nhập và in danh sách nhân viên
 
-Thống kê doanh thu theo năm
+- Thống kê doanh thu theo năm
 
-8. Kết luận – Hướng phát triển
-Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
+## 8. Kết luận – Hướng phát triển
+- Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
 
-Hướng phát triển:
+- Hướng phát triển:
 
-Chuẩn hóa cách tính trị giá hóa đơn
+- Chuẩn hóa cách tính trị giá hóa đơn
 
-Cải thiện thuật toán so sánh ngày tháng
+- Cải thiện thuật toán so sánh ngày tháng
 
-Chuẩn hóa định dạng file dữ liệu
+- Chuẩn hóa định dạng file dữ liệu
 
-TÀI LIỆU THAM KHẢO
-[1] https://en.cppreference.com/w/
-[2] https://cplusplus.com/doc/tutorial/files/
-[3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-[4] https://www.geeksforgeeks.org/data-structures/linked-list/
-[5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
+## TÀI LIỆU THAM KHẢO
+### [1] https://en.cppreference.com/w/
+### [2] https://cplusplus.com/doc/tutorial/files/
+### [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+### [4] https://www.geeksforgeeks.org/data-structures/linked-list/
+### [5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
