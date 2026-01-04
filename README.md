@@ -1,4 +1,4 @@
-DỰ ÁN QUẢN LÝ NHẬP XUẤT VẬT TƯ
+ DỰ ÁN 4: QUẢN LÝ NHẬP XUẤT VẬT TƯ
 1. Giới thiệu
 Dự án Quản lý nhập xuất vật tư mô phỏng hệ thống quản lý kho hàng trong doanh nghiệp.
 Chương trình hỗ trợ quản lý vật tư, nhân viên, lập hóa đơn nhập – xuất, tự động cập nhật tồn kho và thống kê doanh thu theo thời gian.
@@ -98,8 +98,7 @@ Ngôn ngữ lập trình: C / C++
 Cấu trúc dữ liệu: AVL Tree, Linked List, Mảng con trỏ
 Xử lý file: fstream
 Xử lý chuỗi: stringstream
-Chương trình chạy trên môi trường console
-8. TÀI LIỆU THAM KHẢO
+Chương trình chạy trên môi trường console8. TÀI LIỆU THAM KHẢO
 [1] Tham khảo ngôn ngữ C++, cppreference.com.
 Truy cập tại: https://en.cppreference.com/w/cpp
 [2] Luồng tệp trong C++, cplusplus.com.
