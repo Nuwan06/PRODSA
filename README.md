@@ -160,23 +160,23 @@ struct CT_HoaDon {
 
 - Tính và in tổng trị giá hóa đơn
 
-4.6. Thống kê hóa đơn theo khoảng thời gian
-Nhập từ ngày – đến ngày
+### 4.6. Thống kê hóa đơn theo khoảng thời gian
+- Nhập từ ngày – đến ngày
 
 - Lọc và in danh sách hóa đơn theo dạng bảng
 
-4.7. Top 10 vật tư có doanh thu cao nhất
+### 4.7. Top 10 vật tư có doanh thu cao nhất
 - Gom doanh thu theo mã vật tư
 
 - Sắp xếp giảm dần và in 10 vật tư cao nhất
 
-4.8. Thống kê doanh thu theo năm
+### 4.8. Thống kê doanh thu theo năm
 - Nhập năm cần thống kê
 
 - Cộng doanh thu theo từng tháng
 
-5. Lưu và đọc file dữ liệu
-5.1. Ghi file
+## 5. Lưu và đọc file dữ liệu
+### 5.1. Ghi file
 - Ghi danh sách nhân viên
 
 - Ghi danh sách hóa đơn
@@ -185,26 +185,26 @@ Nhập từ ngày – đến ngày
 
 - Sử dụng ký hiệu . để kết thúc mỗi danh sách
 
-5.2. Đọc file
+### 5.2. Đọc file
 - Đọc danh sách nhân viên
 
 - Đọc hóa đơn theo từng nhân viên
 
 - Đọc chi tiết hóa đơn theo số hóa đơn
 
-6. Cài đặt và chạy chương trình
-6.1. Yêu cầu hệ thống
+## 6. Cài đặt và chạy chương trình
+### 6.1. Yêu cầu hệ thống
 ```cpp
 Trình biên dịch C++ (g++, clang++, Visual Studio)
 ```
 - Hệ điều hành Windows (khuyến nghị)
 
-6.2. Biên dịch
+### 6.2. Biên dịch
 ```cpp
 bash
 g++ d.cpp -o ql_vattu
-6.3. Chạy chương trình
 ```
+### 6.3. Chạy chương trình
 ```cpp
 bash
 ./ql_vattu
@@ -243,9 +243,9 @@ bash
 
 - Chuẩn hóa định dạng file dữ liệu
 
-## TÀI LIỆU THAM KHẢO
-### [1] https://en.cppreference.com/w/
-### [2] https://cplusplus.com/doc/tutorial/files/
-### [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-### [4] https://www.geeksforgeeks.org/data-structures/linked-list/
-### [5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
+### TÀI LIỆU THAM KHẢO
+ [1] https://en.cppreference.com/w/
+ [2] https://cplusplus.com/doc/tutorial/files/
+ [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+ [4] https://www.geeksforgeeks.org/data-structures/linked-list/
+ [5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
