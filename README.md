@@ -59,27 +59,26 @@ struct nodeVT {
     nodeVT *left, *right;
 };
 ```
-Con trỏ gốc của cây: treeVT dsvt
+- Con trỏ gốc của cây: treeVT dsvt
 
-Ý tưởng triển khai:
+- Ý tưởng triển khai:
 
-Tạo sẵn cây cân bằng gồm MAX_VatTu node
+- Tạo sẵn cây cân bằng gồm MAX_VatTu node
 
-Gán mã vật tư dạng VT0001...
+- Gán mã vật tư dạng VT0001...
 
-Vật tư chưa tồn tại được đánh dấu TENVT == ""
+- Vật tư chưa tồn tại được đánh dấu TENVT == ""
 
-Khi thêm vật tư, tìm node theo mã và ghi thông tin
+- Khi thêm vật tư, tìm node theo mã và ghi thông tin
 
-Ưu điểm:
+- Ưu điểm:
 
-Tìm kiếm nhanh theo mã vật tư O(log N)
+- Tìm kiếm nhanh theo mã vật tư O(log N)
 
-Không cần xoay AVL phức tạp
+- Không cần xoay AVL phức tạp
 
 ### 3.2. Danh sách Nhân viên (Mảng con trỏ)
 cpp
-Sao chép mã
 struct NhanVien {
     int MANV;
     char HO[20];
@@ -92,15 +91,15 @@ struct DSNV {
     int n;
     NhanVien* nodes[MAX_NHANVIEN];
 };
-Danh sách nhân viên luôn được sắp:
+- Danh sách nhân viên luôn được sắp:
 
-Theo tên tăng dần
+- Theo tên tăng dần
 
-Nếu trùng tên thì họ tăng dần
+- Nếu trùng tên thì họ tăng dần
 
-Thực hiện bằng hàm insert_order()
+- Thực hiện bằng hàm insert_order()
 
-3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
+## 3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
 cpp
 Sao chép mã
 struct HoaDon {
@@ -115,15 +114,15 @@ struct nodeHD {
     HoaDon hd;
     nodeHD* next;
 };
-Mỗi nhân viên có danh sách hóa đơn riêng
+- Mỗi nhân viên có danh sách hóa đơn riêng
 
-Loai:
+- Loai:
 
-N: Phiếu nhập
+- N: Phiếu nhập
 
-X: Phiếu xuất
+- X: Phiếu xuất
 
-3.4. Danh sách Chi tiết hóa đơn
+## 3.4. Danh sách Chi tiết hóa đơn
 cpp
 Sao chép mã
 struct CT_HoaDon {
@@ -132,21 +131,21 @@ struct CT_HoaDon {
     float DONGIA;
     float VAT;
 };
-4. Thiết kế chức năng và luồng xử lý
-4.1. Giao diện menu
-Điều khiển bằng phím mũi tên + Enter
+### 4. Thiết kế chức năng và luồng xử lý
+## 4.1. Giao diện menu
+- Điều khiển bằng phím mũi tên + Enter
 
-Có phân trang khi in danh sách
+- Có phân trang khi in danh sách
 
-4.2. Nhập & in vật tư
-Kiểm tra định dạng mã vật tư VTxxxx
+## 4.2. Nhập & in vật tư
+- Kiểm tra định dạng mã vật tư VTxxxx
 
-In danh sách theo mã hoặc theo tên
+- In danh sách theo mã hoặc theo tên
 
-4.3. Nhập & in nhân viên
-Không cho phép dữ liệu rỗng
+## 4.3. Nhập & in nhân viên
+- Không cho phép dữ liệu rỗng
 
-Luôn duy trì thứ tự danh sách
+- Luôn duy trì thứ tự danh sách
 
 4.4. Lập hóa đơn nhập / xuất
 Nhập số hóa đơn, ngày lập, loại
