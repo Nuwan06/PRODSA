@@ -1,18 +1,44 @@
+## 3. Thiết kế dữ liệu và cấu trúc lưu trữ
+### 3.1. Danh sách Vật tư ...
+Trong chương trình, vật tư được tổ chức...
+hoặc tệ hơn là:
+
+css
+Sao chép mã
+## 3. Thiết kế dữ liệu và cấu trúc lưu trữ ### 3.1. Danh sách Vật tư ...
+→ GitHub coi đó là chữ thường, không render heading.
+
+✅ Giải pháp
+Mình làm lại TOÀN BỘ README từ đầu đến cuối, đảm bảo:
+
+✔️ Mỗi # / ## / ### đứng đúng chuẩn
+
+✔️ Có dòng trống bắt buộc
+
+✔️ Copy–paste vào README.md → render đẹp 100%
+
+✔️ Không bị “đẹp nửa đầu, xấu nửa sau” nữa
+
+Dưới đây là FULL README ĐÃ SỬA LỖI ĐỊNH DẠNG
+👉 Copy NGUYÊN KHỐI, đừng thiếu dòng nào.
+
+md
+Sao chép mã
 # BÁO CÁO ĐỒ ÁN  
-# HỆ THỐNG QUẢN LÝ NHẬP – XUẤT VẬT TƯ
+## HỆ THỐNG QUẢN LÝ NHẬP – XUẤT VẬT TƯ
 
 ---
 
 ## 1. Giới thiệu
 
-Đề tài **“Quản lý nhập – xuất vật tư”** xây dựng một chương trình dạng **console C++** nhằm hỗ trợ quản lý:
+Đề tài **Quản lý nhập – xuất vật tư** xây dựng một chương trình dạng **console C++** nhằm hỗ trợ quản lý:
 
 - Danh mục vật tư và số lượng tồn kho  
 - Danh sách nhân viên  
 - Lập hóa đơn nhập / xuất và chi tiết hóa đơn  
 - In hóa đơn và các chức năng thống kê doanh thu  
 
-Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)*, đồng thời hỗ trợ **lưu và đọc dữ liệu từ file** để tái sử dụng qua các lần chạy.
+Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)* và hỗ trợ **lưu – đọc dữ liệu từ file**.
 
 ---
 
@@ -21,20 +47,21 @@ Chương trình có giao diện console *(vẽ khung, menu, điều hướng b�
 Hệ thống tổ chức **4 danh sách chính**:
 
 - **Vật tư**: Cây nhị phân tìm kiếm cân bằng theo mã vật tư (`MAVT`)
-- **Nhân viên**: Danh sách tuyến tính dạng mảng con trỏ (tối đa 500 NV), sắp theo tên/họ
+- **Nhân viên**: Danh sách tuyến tính dạng mảng con trỏ (tối đa 500 nhân viên)
 - **Hóa đơn**: Danh sách liên kết đơn theo từng nhân viên
-- **Chi tiết hóa đơn**: Danh sách liên kết đơn (`MAVT`, số lượng, đơn giá, VAT)
+- **Chi tiết hóa đơn**: Danh sách liên kết đơn (mã VT, số lượng, đơn giá, VAT)
 
 ### Các chức năng nghiệp vụ
-- (a) Nhập / cập nhật vật tư (thêm / xóa / sửa)
-- (b) In danh sách vật tư tồn kho theo tên tăng dần
-- (c) Nhập / cập nhật nhân viên (không rỗng, sắp theo tên/họ)
-- (d) In danh sách nhân viên theo tên/họ tăng dần
-- (e) Lập hóa đơn nhập / xuất và tự động cập nhật tồn kho
-- (f) In hóa đơn theo số hóa đơn
-- (g) Thống kê hóa đơn trong một khoảng thời gian
-- (h) In 10 vật tư có doanh thu cao nhất trong khoảng thời gian
-- (i) Thống kê doanh thu theo từng tháng của một năm
+
+- (a) Nhập / cập nhật vật tư  
+- (b) In danh sách vật tư tồn kho theo tên tăng dần  
+- (c) Nhập / cập nhật nhân viên  
+- (d) In danh sách nhân viên theo tên / họ tăng dần  
+- (e) Lập hóa đơn nhập / xuất và cập nhật tồn kho  
+- (f) In hóa đơn  
+- (g) Thống kê hóa đơn theo thời gian  
+- (h) Top 10 vật tư doanh thu cao nhất  
+- (i) Thống kê doanh thu theo năm  
 
 ---
 
@@ -45,163 +72,138 @@ Hệ thống tổ chức **4 danh sách chính**:
 Trong chương trình, vật tư được tổ chức trong lớp `lopvattu`:
 
 ```cpp
-struct VatTu { MAVT, TENVT, DVT, SoLuongTon, height };
-struct nodeVT { VatTu vt; nodeVT *left, *right; };
+struct VatTu {
+    char MAVT[10];
+    char TENVT[30];
+    char DVT[10];
+    int SoLuongTon;
+    int height;
+};
+
+struct nodeVT {
+    VatTu vt;
+    nodeVT *left, *right;
+};
 Con trỏ gốc: treeVT dsvt
 
 Ý tưởng triển khai:
 
-Tạo sẵn cây cân bằng gồm MAX_VatTu node bằng hàm taocaynhiphancanbang(start, end)
+Tạo sẵn cây cân bằng với MAX_VatTu node
 
-Gán sẵn mã VT0001 ... theo midpoint
+Mã vật tư gán sẵn dạng VT0001...
 
-Vật tư chưa tồn tại được đánh dấu TENVT == ""
+Vật tư chưa tồn tại có TENVT == ""
 
-Khi thêm vật tư, tìm node theo mã (Tim_kiem_theo_maVT) và ghi thông tin
+Khi thêm vật tư → tìm node theo mã rồi ghi thông tin
 
-➡️ Ưu điểm:
+Ưu điểm:
 
-Tìm kiếm nhanh theo mã vật tư O(log N)
+Tìm kiếm nhanh O(log N)
 
-Không cần xoay AVL vì cây đã cân bằng sẵn
+Không cần xoay AVL
 
 3.2. Danh sách Nhân viên (Mảng con trỏ)
 cpp
 Sao chép mã
-struct NhanVien { MANV, HO, TEN, PHAI, PTRHD dshd };
-struct DSNV { int n; NhanVien* nodes[MAX_NhanVien]; };
+struct NhanVien {
+    int MANV;
+    char HO[20];
+    char TEN[20];
+    char PHAI[5];
+    PTRHD dshd;
+};
+
+struct DSNV {
+    int n;
+    NhanVien* nodes[MAX_NHANVIEN];
+};
 Danh sách luôn sắp:
 
 Tên tăng dần
 
-Nếu trùng tên → Họ tăng dần
+Trùng tên → họ tăng dần
 
-Thực hiện bằng hàm insert_order()
+Thực hiện bằng insert_order()
 
-3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
+3.3. Danh sách Hóa đơn
 cpp
 Sao chép mã
-struct HoaDon { SoHD, NgayLapHoaDon, Loai, trigia, PTRCTHD dscthd };
-struct nodeHD { HoaDon hd; nodeHD* next };
-Mỗi nhân viên có dshd trỏ đến danh sách hóa đơn
+struct HoaDon {
+    char SoHD[20];
+    Date NgayLapHoaDon;
+    char Loai;
+    float trigia;
+    PTRCTHD dscthd;
+};
 
-Loai:
+struct nodeHD {
+    HoaDon hd;
+    nodeHD* next;
+};
+Mỗi nhân viên có danh sách hóa đơn riêng
 
-N – Phiếu nhập
-
-X – Phiếu xuất
-
-Các hàm chính:
-
-create_node()
-
-insert_begin()
-
-reverse() (đảo danh sách khi đọc file)
+Loai: N (nhập) hoặc X (xuất)
 
 3.4. Danh sách Chi tiết hóa đơn
 cpp
 Sao chép mã
-struct CT_HoaDon { MAVT, soluong, DONGIA, VAT, tongtienthoethang };
-struct nodeCTHD { CT_HoaDon cthd; nodeCTHD* next };
-Các hàm xử lý:
-
-create_nodecthd()
-
-insert_begincthd()
-
-reverscthd()
-
+struct CT_HoaDon {
+    char MAVT[10];
+    int soluong;
+    float DONGIA;
+    float VAT;
+};
 4. Thiết kế chức năng và luồng xử lý
 4.1. Giao diện menu
-Menu điều khiển bằng phím mũi tên + Enter
+Điều khiển bằng phím mũi tên + Enter
 
-Có vẽ khung, hướng dẫn phím
+Có phân trang khi in danh sách
 
-Phân trang khi in danh sách (Up / Down)
+4.2. Nhập & in vật tư
+Kiểm tra định dạng VTxxxx
 
-4.2. Nhập và in vật tư (a, b)
-Kiểm tra định dạng mã VTxxxx
+In theo mã hoặc theo tên
 
-In danh sách:
+4.3. Nhập & in nhân viên
+Không cho phép dữ liệu rỗng
 
-Theo mã: duyệt LNR
+Luôn duy trì thứ tự
 
-Theo tên: màn hình riêng “DS VẬT TƯ SẮP XẾP THEO TÊN”
+4.4. Lập hóa đơn nhập / xuất
+Nhập số HĐ, ngày, loại
 
-4.3. Nhập và in nhân viên (c, d)
-Kiểm tra dữ liệu không rỗng
+Tự động cập nhật tồn kho
 
-Duy trì thứ tự bằng insert_order()
+Thiếu hàng → báo lỗi
 
-In danh sách theo thứ tự đã sắp
-
-4.4. Lập hóa đơn nhập / xuất (e)
-Nhập: số HĐ, ngày lập, loại
-
-Nhập danh sách vật tư
-
-Tự động cập nhật tồn kho:
-
-N → tăng tồn
-
-X → giảm tồn (thiếu hàng → báo lỗi)
-
-Sinh số HĐ tự động:
-
-cpp
-Sao chép mã
-taotaosohdngaylaphd(); // HD<year><month><####>
-4.5. In hóa đơn (f)
-Tìm theo số hóa đơn
-
+4.5. In hóa đơn
 In chi tiết + tổng trị giá
 
-4.6. Thống kê hóa đơn theo thời gian (g)
-Nhập từ ngày – đến ngày
+4.6. Thống kê hóa đơn theo thời gian
+Lọc theo khoảng ngày
 
-Lọc hóa đơn và in dạng bảng
+In dạng bảng
 
-Dùng mảng trung gian a1[] để phân trang
-
-4.7. Top 10 vật tư doanh thu cao nhất (h)
-Gom doanh thu theo mã vật tư
+4.7. Top 10 vật tư doanh thu cao nhất
+Gom doanh thu
 
 Sắp xếp giảm dần
 
-In 10 vật tư cao nhất
-
-4.8. Thống kê doanh thu theo năm (i)
-Nhập năm
-
+4.8. Thống kê doanh thu theo năm
 Cộng doanh thu theo từng tháng
 
 5. Lưu và đọc file dữ liệu
 5.1. Ghi file
-Hàm ghifile()
+Ghi nhân viên, hóa đơn, chi tiết hóa đơn
 
-Ghi:
-
-Nhân viên
-
-Hóa đơn
-
-Chi tiết hóa đơn
-
-Dùng ký hiệu . để kết thúc danh sách
+Ký hiệu . kết thúc danh sách
 
 5.2. Đọc file
-Hàm mofile()
-
-Gọi lần lượt:
-
-mofilehoadon()
-
-mofilechitiethoadon()
+Đọc theo thứ tự: NV → HĐ → CTHĐ
 
 6. Cài đặt và chạy chương trình
-6.1. Yêu cầu hệ thống
-Trình biên dịch C++ (g++, clang++, Visual Studio)
+6.1. Yêu cầu
+C++ compiler
 
 Windows (khuyến nghị)
 
@@ -213,58 +215,35 @@ g++ d.cpp -o ql_vattu
 bash
 Sao chép mã
 ./ql_vattu
-Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
-Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
-
-7. Thành viên tham gia & Phân công công việc
-🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
-Phụ trách:
-
-Lập hóa đơn nhập / xuất
+7. Thành viên tham gia & Phân công
+🔹 Nguyễn Ngọc Toàn
+Lập hóa đơn
 
 In hóa đơn
 
-Thống kê hóa đơn theo thời gian
+Thống kê theo thời gian
 
-🔹 Trần Thanh Nhuận – Quản lý Vật tư
-Phụ trách:
+🔹 Trần Thanh Nhuận
+Quản lý vật tư
 
-Nhập / cập nhật vật tư
+In tồn kho
 
-In danh sách vật tư tồn kho
+Top 10 vật tư
 
-Top 10 vật tư doanh thu cao nhất
+🔹 Nguyễn Thanh Tú
+Quản lý nhân viên
 
-🔹 Nguyễn Thanh Tú – Quản lý Nhân viên & Doanh thu
-Phụ trách:
-
-Nhập / in nhân viên
-
-Thống kê doanh thu theo năm
+Thống kê doanh thu năm
 
 8. Kết luận – Hướng phát triển
-Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
+Chuẩn hóa tính trị giá hóa đơn
 
-Hướng phát triển:
+Cải thiện so sánh ngày
 
-Chuẩn hóa cách tính trị giá hóa đơn
-
-Cải thiện so sánh ngày tháng
-
-Chuẩn hóa định dạng file dữ liệu
+Chuẩn hóa định dạng file
 
 TÀI LIỆU THAM KHẢO
-[1] C++ Language Reference, cppreference.com
-https://en.cppreference.com/w/
-
-[2] File Streams in C++, cplusplus.com
-https://cplusplus.com/doc/tutorial/files/
-
-[3] Binary Search Tree, GeeksforGeeks
-https://www.geeksforgeeks.org/binary-search-tree-data-structure/
-
-[4] Linked List Data Structure, GeeksforGeeks
-https://www.geeksforgeeks.org/data-structures/linked-list/
-
-[5] Array of Pointers in C++, GeeksforGeeks
-https://www.geeksforgeeks.org/array-of-pointers-in-c/
+[1] https://en.cppreference.com/w/
+[2] https://cplusplus.com/doc/tutorial/files/
+[3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+[4] https://www.geeksforgeeks.org/data-structures/linked-list/
