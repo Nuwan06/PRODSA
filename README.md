@@ -12,7 +12,7 @@
 - Lập hóa đơn nhập / xuất và chi tiết hóa đơn  
 - In hóa đơn và các chức năng thống kê doanh thu  
 
-Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)*, đồng thời hỗ trợ **lưu và đọc dữ liệu từ file** để tái sử dụng qua các lần chạy.
+- Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)*, đồng thời hỗ trợ **lưu và đọc dữ liệu từ file** để tái sử dụng qua các lần chạy.
 
 ---
 
@@ -244,8 +244,8 @@ bash
 - Chuẩn hóa định dạng file dữ liệu
 
 ### TÀI LIỆU THAM KHẢO
- [1] https://en.cppreference.com/w/
- [2] https://cplusplus.com/doc/tutorial/files/
- [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
- [4] https://www.geeksforgeeks.org/data-structures/linked-list/
- [5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
+[1] https://en.cppreference.com/w/
+[2] https://cplusplus.com/doc/tutorial/files/
+[3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
+[4] https://www.geeksforgeeks.org/data-structures/linked-list/
+[5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
