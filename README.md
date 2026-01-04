@@ -217,19 +217,19 @@ bash
 - Nhập và cập nhật vật tư
 
 - In danh sách vật tư tồn kho
+- Thống kê hóa đơn theo thời gian
 
-- Top 10 vật tư doanh thu cao nhất
 
 ### 🔹 Nguyễn Thanh Tú – Quản lý Nhân viên & Doanh thu
-- Nhập và in danh sách nhân viên
+- Nhập / cập nhật nhân viên (không rỗng)
+  
+- In danh sách nhân viên theo tên / họ tăng dần
 
-- Thống kê doanh thu theo năm
+-  Thống kê doanh thu theo từng tháng của một năm
 ### 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
 - Lập hóa đơn nhập / xuất
-
 - In hóa đơn
-
-- Thống kê hóa đơn theo thời gian
+- Top 10 vật tư doanh thu cao nhất
 
 ## 8. Kết luận – Hướng phát triển
 - Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
