@@ -1,29 +1,3 @@
-## 3. Thiết kế dữ liệu và cấu trúc lưu trữ
-### 3.1. Danh sách Vật tư ...
-Trong chương trình, vật tư được tổ chức...
-hoặc tệ hơn là:
-
-css
-Sao chép mã
-## 3. Thiết kế dữ liệu và cấu trúc lưu trữ ### 3.1. Danh sách Vật tư ...
-→ GitHub coi đó là chữ thường, không render heading.
-
-✅ Giải pháp
-Mình làm lại TOÀN BỘ README từ đầu đến cuối, đảm bảo:
-
-✔️ Mỗi # / ## / ### đứng đúng chuẩn
-
-✔️ Có dòng trống bắt buộc
-
-✔️ Copy–paste vào README.md → render đẹp 100%
-
-✔️ Không bị “đẹp nửa đầu, xấu nửa sau” nữa
-
-Dưới đây là FULL README ĐÃ SỬA LỖI ĐỊNH DẠNG
-👉 Copy NGUYÊN KHỐI, đừng thiếu dòng nào.
-
-md
-Sao chép mã
 # BÁO CÁO ĐỒ ÁN  
 ## HỆ THỐNG QUẢN LÝ NHẬP – XUẤT VẬT TƯ
 
@@ -38,7 +12,7 @@ Sao chép mã
 - Lập hóa đơn nhập / xuất và chi tiết hóa đơn  
 - In hóa đơn và các chức năng thống kê doanh thu  
 
-Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)* và hỗ trợ **lưu – đọc dữ liệu từ file**.
+Chương trình có giao diện console *(vẽ khung, menu, điều hướng bằng phím mũi tên, F1/F2/F3, ESC)*, đồng thời hỗ trợ **lưu và đọc dữ liệu từ file** để tái sử dụng qua các lần chạy.
 
 ---
 
@@ -49,19 +23,19 @@ Hệ thống tổ chức **4 danh sách chính**:
 - **Vật tư**: Cây nhị phân tìm kiếm cân bằng theo mã vật tư (`MAVT`)
 - **Nhân viên**: Danh sách tuyến tính dạng mảng con trỏ (tối đa 500 nhân viên)
 - **Hóa đơn**: Danh sách liên kết đơn theo từng nhân viên
-- **Chi tiết hóa đơn**: Danh sách liên kết đơn (mã VT, số lượng, đơn giá, VAT)
+- **Chi tiết hóa đơn**: Danh sách liên kết đơn (mã vật tư, số lượng, đơn giá, VAT)
 
 ### Các chức năng nghiệp vụ
 
-- (a) Nhập / cập nhật vật tư  
+- (a) Nhập / cập nhật vật tư (thêm / xóa / sửa)  
 - (b) In danh sách vật tư tồn kho theo tên tăng dần  
-- (c) Nhập / cập nhật nhân viên  
+- (c) Nhập / cập nhật nhân viên (không rỗng)  
 - (d) In danh sách nhân viên theo tên / họ tăng dần  
-- (e) Lập hóa đơn nhập / xuất và cập nhật tồn kho  
-- (f) In hóa đơn  
-- (g) Thống kê hóa đơn theo thời gian  
-- (h) Top 10 vật tư doanh thu cao nhất  
-- (i) Thống kê doanh thu theo năm  
+- (e) Lập hóa đơn nhập / xuất và tự động cập nhật tồn kho  
+- (f) In hóa đơn theo số hóa đơn  
+- (g) Thống kê hóa đơn trong một khoảng thời gian  
+- (h) In 10 vật tư có doanh thu cao nhất trong khoảng thời gian  
+- (i) Thống kê doanh thu theo từng tháng của một năm  
 
 ---
 
@@ -69,7 +43,7 @@ Hệ thống tổ chức **4 danh sách chính**:
 
 ### 3.1. Danh sách Vật tư (Cây nhị phân tìm kiếm cân bằng)
 
-Trong chương trình, vật tư được tổ chức trong lớp `lopvattu`:
+Vật tư được tổ chức trong lớp `lopvattu` với cấu trúc dữ liệu:
 
 ```cpp
 struct VatTu {
@@ -84,23 +58,23 @@ struct nodeVT {
     VatTu vt;
     nodeVT *left, *right;
 };
-Con trỏ gốc: treeVT dsvt
+Con trỏ gốc của cây: treeVT dsvt
 
 Ý tưởng triển khai:
 
-Tạo sẵn cây cân bằng với MAX_VatTu node
+Tạo sẵn cây cân bằng gồm MAX_VatTu node
 
-Mã vật tư gán sẵn dạng VT0001...
+Gán mã vật tư dạng VT0001...
 
-Vật tư chưa tồn tại có TENVT == ""
+Vật tư chưa tồn tại được đánh dấu TENVT == ""
 
-Khi thêm vật tư → tìm node theo mã rồi ghi thông tin
+Khi thêm vật tư, tìm node theo mã và ghi thông tin
 
 Ưu điểm:
 
-Tìm kiếm nhanh O(log N)
+Tìm kiếm nhanh theo mã vật tư O(log N)
 
-Không cần xoay AVL
+Không cần xoay AVL phức tạp
 
 3.2. Danh sách Nhân viên (Mảng con trỏ)
 cpp
@@ -117,15 +91,15 @@ struct DSNV {
     int n;
     NhanVien* nodes[MAX_NHANVIEN];
 };
-Danh sách luôn sắp:
+Danh sách nhân viên luôn được sắp:
 
-Tên tăng dần
+Theo tên tăng dần
 
-Trùng tên → họ tăng dần
+Nếu trùng tên thì họ tăng dần
 
-Thực hiện bằng insert_order()
+Thực hiện bằng hàm insert_order()
 
-3.3. Danh sách Hóa đơn
+3.3. Danh sách Hóa đơn (Danh sách liên kết đơn)
 cpp
 Sao chép mã
 struct HoaDon {
@@ -142,7 +116,11 @@ struct nodeHD {
 };
 Mỗi nhân viên có danh sách hóa đơn riêng
 
-Loai: N (nhập) hoặc X (xuất)
+Loai:
+
+N: Phiếu nhập
+
+X: Phiếu xuất
 
 3.4. Danh sách Chi tiết hóa đơn
 cpp
@@ -160,90 +138,110 @@ struct CT_HoaDon {
 Có phân trang khi in danh sách
 
 4.2. Nhập & in vật tư
-Kiểm tra định dạng VTxxxx
+Kiểm tra định dạng mã vật tư VTxxxx
 
-In theo mã hoặc theo tên
+In danh sách theo mã hoặc theo tên
 
 4.3. Nhập & in nhân viên
 Không cho phép dữ liệu rỗng
 
-Luôn duy trì thứ tự
+Luôn duy trì thứ tự danh sách
 
 4.4. Lập hóa đơn nhập / xuất
-Nhập số HĐ, ngày, loại
+Nhập số hóa đơn, ngày lập, loại
 
-Tự động cập nhật tồn kho
+Tự động cập nhật số lượng tồn kho
 
-Thiếu hàng → báo lỗi
+Thiếu hàng → báo lỗi và hiển thị số lượng tồn hiện có
 
 4.5. In hóa đơn
-In chi tiết + tổng trị giá
+In chi tiết từng vật tư trong hóa đơn
 
-4.6. Thống kê hóa đơn theo thời gian
-Lọc theo khoảng ngày
+Tính và in tổng trị giá hóa đơn
 
-In dạng bảng
+4.6. Thống kê hóa đơn theo khoảng thời gian
+Nhập từ ngày – đến ngày
 
-4.7. Top 10 vật tư doanh thu cao nhất
-Gom doanh thu
+Lọc và in danh sách hóa đơn theo dạng bảng
 
-Sắp xếp giảm dần
+4.7. Top 10 vật tư có doanh thu cao nhất
+Gom doanh thu theo mã vật tư
+
+Sắp xếp giảm dần và in 10 vật tư cao nhất
 
 4.8. Thống kê doanh thu theo năm
+Nhập năm cần thống kê
+
 Cộng doanh thu theo từng tháng
 
 5. Lưu và đọc file dữ liệu
 5.1. Ghi file
-Ghi nhân viên, hóa đơn, chi tiết hóa đơn
+Ghi danh sách nhân viên
 
-Ký hiệu . kết thúc danh sách
+Ghi danh sách hóa đơn
+
+Ghi chi tiết hóa đơn
+
+Sử dụng ký hiệu . để kết thúc mỗi danh sách
 
 5.2. Đọc file
-Đọc theo thứ tự: NV → HĐ → CTHĐ
+Đọc danh sách nhân viên
+
+Đọc hóa đơn theo từng nhân viên
+
+Đọc chi tiết hóa đơn theo số hóa đơn
 
 6. Cài đặt và chạy chương trình
-6.1. Yêu cầu
-C++ compiler
+6.1. Yêu cầu hệ thống
+Trình biên dịch C++ (g++, clang++, Visual Studio)
 
-Windows (khuyến nghị)
+Hệ điều hành Windows (khuyến nghị)
 
 6.2. Biên dịch
 bash
 Sao chép mã
 g++ d.cpp -o ql_vattu
-6.3. Chạy
+6.3. Chạy chương trình
 bash
 Sao chép mã
 ./ql_vattu
-7. Thành viên tham gia & Phân công
-🔹 Nguyễn Ngọc Toàn
-Lập hóa đơn
+Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
+Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
+
+7. Thành viên tham gia & Phân công công việc
+🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
+Lập hóa đơn nhập / xuất
 
 In hóa đơn
 
-Thống kê theo thời gian
+Thống kê hóa đơn theo thời gian
 
-🔹 Trần Thanh Nhuận
-Quản lý vật tư
+🔹 Trần Thanh Nhuận – Quản lý Vật tư
+Nhập và cập nhật vật tư
 
-In tồn kho
+In danh sách vật tư tồn kho
 
-Top 10 vật tư
+Top 10 vật tư doanh thu cao nhất
 
-🔹 Nguyễn Thanh Tú
-Quản lý nhân viên
+🔹 Nguyễn Thanh Tú – Quản lý Nhân viên & Doanh thu
+Nhập và in danh sách nhân viên
 
-Thống kê doanh thu năm
+Thống kê doanh thu theo năm
 
 8. Kết luận – Hướng phát triển
-Chuẩn hóa tính trị giá hóa đơn
+Chương trình đáp ứng đầy đủ yêu cầu quản lý vật tư, nhân viên, hóa đơn và thống kê.
 
-Cải thiện so sánh ngày
+Hướng phát triển:
 
-Chuẩn hóa định dạng file
+Chuẩn hóa cách tính trị giá hóa đơn
+
+Cải thiện thuật toán so sánh ngày tháng
+
+Chuẩn hóa định dạng file dữ liệu
 
 TÀI LIỆU THAM KHẢO
 [1] https://en.cppreference.com/w/
 [2] https://cplusplus.com/doc/tutorial/files/
 [3] https://www.geeksforgeeks.org/binary-search-tree-data-structure/
 [4] https://www.geeksforgeeks.org/data-structures/linked-list/
+[5] https://www.geeksforgeeks.org/array-of-pointers-in-c/
