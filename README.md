@@ -207,6 +207,7 @@ Sao chép mã
 ./ql_vattu
 Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
 Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
+```cpp
 
 7. Thành viên tham gia & Phân công công việc
 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
