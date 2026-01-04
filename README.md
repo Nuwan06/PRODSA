@@ -58,6 +58,7 @@ struct nodeVT {
     VatTu vt;
     nodeVT *left, *right;
 };
+```
 Con trỏ gốc của cây: treeVT dsvt
 
 Ý tưởng triển khai:
