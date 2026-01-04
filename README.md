@@ -209,7 +209,7 @@ Nếu lỗi thiếu mylib.h, gotoxy, SetColor…
 Hãy đặt mylib.h đúng đường dẫn hoặc sửa include thành "mylib.h".
 ```cpp
 
-7. Thành viên tham gia & Phân công công việc
+### 7. Thành viên tham gia & Phân công công việc
 🔹 Nguyễn Ngọc Toàn – Quản lý Hóa đơn & Thống kê
 Lập hóa đơn nhập / xuất
 
