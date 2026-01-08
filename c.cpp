@@ -126,23 +126,25 @@ void taokhungdanhsach2() {
     taokhung();
     SetColor(9);
     gotoxy(15, 4); cout<<"║";
-    gotoxy(38, 4); cout<<"║";
-    gotoxy(61, 4);cout<<"║";
+    gotoxy(41, 4); cout<<"║";
+    gotoxy(63, 4);cout<<"║";
+    gotoxy(79, 4);cout<<"║";
     Normal();
-    gotoxy(8,4); cout<<" Mã VT";gotoxy(17, 4); cout<<" Số lượng";
-    gotoxy(40, 4);cout<<" Đơn giá VNĐ";
-    gotoxy(63, 4); cout<< " VAT";
+    gotoxy(8,4); cout<<"Mã VT";gotoxy(17, 4); cout<<"Tên vật tư";
+    gotoxy(44, 4); cout<<"Đơn giá VNĐ";
+    gotoxy(65, 4);cout<<"Số lượng";
+    gotoxy(81, 4); cout<< "VAT";
     SetColor(9);
     gotoxy(8, 5); 
     for(int i = 0; i <85; i++) {
         cout <<"═"; 
     }
-
     
 for(int i = 0 ; i < 22; i++) {
     gotoxy(15, 4+i+1); cout<<"║"; 
-    gotoxy(38, 4+i+1); cout<<"║"; 
-    gotoxy(61, 4+i+1);cout<<"║"; 
+    gotoxy(41, 4+i+1); cout<<"║"; 
+    gotoxy(63, 4+i+1); cout<<"║";
+    gotoxy(79, 4+i+1); cout<<"║"; 
 }
     gotoxy(8, 26);
     for(int i = 0; i < 85; i++) {
@@ -190,9 +192,9 @@ for(int i = 0 ; i < 22; i++) {
 void taokhungdanhsach4() {
     taokhung();
     SetColor(9);
-    gotoxy(38, 4); cout<<"║";
+    gotoxy(30, 4); cout<<"║"; gotoxy(60, 4); cout<<"║";
     Normal();
-    gotoxy(15,4); cout<<" Mã vật tư";gotoxy(45, 4); cout<<" Tổng doanh thu của vật tư";
+    gotoxy(12,4); cout<<" Mã vật tư";gotoxy(34, 4); cout<<"Tên vật tư";gotoxy(63, 4); cout<<" Tổng doanh thu của vật tư";
     SetColor(9);
     gotoxy(8, 5); 
     for(int i = 0; i <85; i++) {
@@ -201,7 +203,9 @@ void taokhungdanhsach4() {
 
     
 for(int i = 0 ; i < 22; i++) { 
-    gotoxy(38, 4+i+1); cout<<"║"; 
+    gotoxy(30, 4+i+1); cout<<"║"; 
+    gotoxy(60, 4+i+1); cout<<"║"; 
+
 }
     gotoxy(8, 26);
     for(int i = 0; i < 85; i++) {
@@ -285,7 +289,7 @@ void taoghichumaso3() {
 }
 void taoghichumaso4() {
     HighLight();
-    gotoxy(40,1); cout<<"  THỐNG KÊ TOP 10 VẬT TƯ CÓ DOANH THU CAO NHÁT   ";
+    gotoxy(37,1); cout<<"  THỐNG KÊ TOP 10 VẬT TƯ CÓ DOANH THU CAO NHÁT   ";
     Normal();
     gotoxy(9, 27); cout<<"  ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
@@ -517,7 +521,7 @@ struct Date{
 
         // kiem tra VT
         if (input.length() < 2 || input[0] != 'V' || input[1] != 'T') {
-            BaoLoi("Ma vat tu phai bat dau bang","VT.","");
+            BaoLoi("Mã vật tư phải bắt đầu bằng","VT.","");
             return false;
         }
 
@@ -527,13 +531,13 @@ struct Date{
             if (input[i] >= '0' && input[i] <= '9')
                 so += input[i];
             else {
-                cout << "Ma vat tu chi duoc chua so sau VT.\n";
+                BaoLoi("Mã vật tư chỉ được chứa ","số sau VT.","");
                 return false;
             }
         }
 
         if (so.length() == 0) {
-            cout << "Chua nhap so cho ma vat tu.\n";
+            BaoLoi("Chưa nhập số cho mã vật tư.","","");
             return false;
         }
 
@@ -541,8 +545,8 @@ struct Date{
         for (int i = 0; i < so.length(); i++)
             num = num * 10 + (so[i] - '0');
 
-        if (num < 0 || num > 9999) {
-            BaoLoi("Ma vat tu chi tu VT0000 den", "VT9999.","");
+        if (num < 1 || num > 9999) {
+            BaoLoi("mã vật tư chỉ từ VT0001 ", "đến VT9999.","");
             return false;
         }
 
@@ -566,20 +570,20 @@ struct Date{
 
     // 2. Phải đúng 5 ký tự
     if (maNV.length() != 5) {
-        cout << "Loi: Ma nhan vien phai co dang NVxxx (VD: NV001)\n";
+        BaoLoi("Loi: Ma nhan vien phai co"," dang NVxxx (VD: NV001)","");
         return false;
     }
 
     // 3. Hai ký tự đầu phải là NV
     if (maNV[0] != 'N' || maNV[1] != 'V') {
-        cout << "Loi: Ma nhan vien phai bat dau bang NV\n";
+        BaoLoi("Loi: Ma nhan vien phai ","bat dau bang NV","");
         return false;
     }
 
     // 4. Ba ký tự sau phải là số
     for (int i = 2; i < 5; i++) {
         if (maNV[i] < '0' || maNV[i] > '9') {
-            cout << "Loi: 3 ky tu sau NV phai la so\n";
+            BaoLoi("Loi: 3 ky tu sau NV phai la so","","");
             return false;
         }
     
@@ -591,93 +595,106 @@ struct Date{
              (maNV[4] - '0');
 
     if (so == 0) {
-        cout << "Loi: Ma nhan vien khong duoc la NV000\n";
+        BaoLoi("Ma nhan vien khong duoc ","la NV000","");
         return false;
     }
 
     return true; // hợp lệ
 }
-    // chuan hoa ten (viet hoa chu cai dau moi tu)
-    static string chuanHoaTen(string &s) {
-        // xoa khoang trang dau
-        while (s.length() > 0 && s[0] == ' ')
-            s.erase(0, 1);
-
-        // xoa khoang trang cuoi
-        while (s.length() > 0 && s[s.length() - 1] == ' ')
-            s.erase(s.length() - 1, 1);
-
-        // xoa khoang trang thua giua
-        for (int i = 0; i < s.length() - 1; i++) {
-            if (s[i] == ' ' && s[i + 1] == ' ') {
-                s.erase(i, 1);
-                i--;
-            }
-        }
-
-        bool dauTu = true;
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] == ' ')
-                dauTu = true;
-            else {
-                if (dauTu) {
-                    if (s[i] >= 'a' && s[i] <= 'z')
-                        s[i] -= 32;
-                    dauTu = false;
-                }
-                else {
-                    if (s[i] >= 'A' && s[i] <= 'Z')
-                        s[i] += 32;
-                }
-            }
-        }
-        return s;
-    }
-
-    // kiem tra nam nhuan
-    static bool laNamNhuan(int nam) {
-        if (nam % 400 == 0) return true;
-        if (nam % 100 == 0) return false;
-        if (nam % 4 == 0) return true;
+   static bool chuanHoaTen(string& s) {
+    if (s.length() == 0) {
+        BaoLoi("Ten rong!", "", "");
         return false;
     }
 
-    // kiem tra ngay hop le
-    static bool kiemTraNgayHopLe(Date d) {
-        if (d.year < 1900 || d.year > 2100) return false;
-        if (d.month < 1 || d.month > 12) return false;
-        if (d.day < 1) return false;
+    // 1. Xóa khoảng trắng đầu
+    while (!s.empty() && s[0] == ' ')
+        s.erase(0, 1);
 
-        int soNgay = 0;
-        if (d.month == 1 || d.month == 3 || d.month == 5 ||
-            d.month == 7 || d.month == 8 || d.month == 10 || d.month == 12)
-            soNgay = 31;
-        else if (d.month == 4 || d.month == 6 ||
-            d.month == 9 || d.month == 11)
-            soNgay = 30;
-        else {
-            if (laNamNhuan(d.year)) soNgay = 29;
-            else soNgay = 28;
+    // 2. Xóa khoảng trắng cuối
+    while (!s.empty() && s[s.length() - 1] == ' ')
+        s.erase(s.length() - 1, 1);
+
+    // 3. Xóa khoảng trắng thừa ở giữa
+    for (int i = 0; i + 1 < s.length(); i++) {
+        if (s[i] == ' ' && s[i + 1] == ' ') {
+            s.erase(i, 1);
+            i--;
         }
-
-        return d.day <= soNgay;
     }
 
+    // 4. Chỉ kiểm tra ký tự cơ bản (không kiểm tra tiếng Việt phức tạp)
+    for (int i = 0; i < s.length(); i++) {
+        char c = s[i];
+        // Cho phép: chữ cái, khoảng trắng, dấu nháy đơn (cho tên như O'Connor)
+        if (!((c >= 'A' && c <= 'Z') ||
+              (c >= 'a' && c <= 'z') ||
+              c == ' ' ||
+              c == '\'' ||
+              c == '.' || // cho phép chấm
+              (unsigned char)c >= 128)) { // cho phép ký tự UTF-8 (tiếng Việt)
+            BaoLoi("Ten chua ky tu khong hop le!", "", "");
+            return false;
+        }
+    }
+
+    // 5. Chuyển đổi về dạng chuẩn: viết hoa chữ cái đầu mỗi từ
+    bool dauTu = true;
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] == ' ') {
+            dauTu = true;
+        } else if (dauTu) {
+            // Chỉ viết hoa nếu là chữ cái tiếng Anh không dấu
+            if (s[i] >= 'a' && s[i] <= 'z') {
+                s[i] = s[i] - 32;
+            }
+            dauTu = false;
+        } else {
+            // Chỉ viết thường nếu là chữ cái tiếng Anh không dấu
+            if (s[i] >= 'A' && s[i] <= 'Z') {
+                s[i] = s[i] + 32;
+            }
+        }
+    }
+
+    return true;
+}
     // kiem tra loai hoa don N / X
     static bool kiemTraLoaiHoaDon(string& Loai) {
         char loai = Loai[0];
         if (loai >= 'a' && loai <= 'z'){
             loai -= 32;}
+            Loai[0] = loai;
 
-        return (loai == 'N' || loai == 'X');
+        return (Loai[0] == 'N' || Loai[0] == 'X');
     }
-    static bool kiemTraPhai(string& loai) {
-        if (loai == "Nam" || loai == "Nữ") {
-            return true;
-        }
-        return false;
+    static bool chuanHoaGioiTinh(string &phai) {
+    // 1. Bỏ khoảng trắng đầu/cuối (nếu có)
+    while (phai.length() > 0 && phai[0] == ' ')
+        phai.erase(0, 1);
+    while (phai.length() > 0 && phai[phai.length() - 1] == ' ')
+        phai.erase(phai.length() - 1, 1);
+
+    // 2. Chuẩn hóa hết về chữ thường
+    for (int i = 0; i < phai.length(); i++) {
+        if (phai[i] >= 'A' && phai[i] <= 'Z')
+            phai[i] += 32;
     }
 
+    // 3. Kiểm tra hợp lệ
+    if (phai == "nam") {
+        phai = "Nam";
+        return true;
+    }
+
+    if (phai == "nữ" || phai == "nu") {
+        phai = "Nữ";
+        return true;
+    }
+
+    BaoLoi("Giới tính chỉ được ","là Nam hoặc Nữ","");
+    return false;
+}
     static int ktrasonguyen() {
         int n;
        cin >> n;
@@ -733,6 +750,9 @@ struct Date{
         if (na > nb) return 1;
         return 0;
     }
+    static long long quyDoiNgay(int d, int m, int y) {
+    return (long long)y * 10000 + m * 100 + d;
+}
 };
 
 
@@ -775,18 +795,28 @@ lopvattu(string Filevattu) {
     Cap_nhat_do_cao(dsvt);
     mofile();
    }
- void ktravatu(string vattu, string loai, int soluong) {
+void nvvattu(string vattu, string loai, int soluong) {
     temptree = NULL;
     temptree = Tim_kiem_theo_maVT(dsvt, vattu);
     if(temptree!=NULL) {
     if(loai == "N") {
         temptree->vt.SoLuongTon += soluong; 
     } else {
-        if(temptree->vt.SoLuongTon >= soluong) {
+        
             temptree->vt.SoLuongTon-=soluong;
-        }
-    }
+       
+    } 
+} 
 }
+bool ktravatu(string vattu, string loai, int soluong) {
+    temptree = NULL;
+    temptree = Tim_kiem_theo_maVT(dsvt, vattu);
+    if(temptree!=NULL) {
+        if(temptree->vt.SoLuongTon < soluong) {
+            BaoLoi("Kho không đủ số lượng","","");
+            return false;
+        }
+    } return true;
 }
 
 int Cap_nhat_do_cao(treeVT root) {
@@ -828,6 +858,14 @@ treeVT Tim_kiem_theo_maVT(treeVT root, string mavt){
     if (root->vt.MAVT < mavt) 
         return Tim_kiem_theo_maVT(root->right, mavt);
         return Tim_kiem_theo_maVT(root->left, mavt); 
+ 
+}
+treeVT Tim_kiem_theo_maVT1(treeVT root, string mavt){ 
+    if (root == NULL || (root->vt.MAVT == mavt&&root->vt.TENVT!="")) 
+        return root;
+    if (root->vt.MAVT < mavt) 
+        return Tim_kiem_theo_maVT1(root->right, mavt);
+        return Tim_kiem_theo_maVT1(root->left, mavt); 
  
 }
 
@@ -1063,14 +1101,15 @@ void Case1(lopvattu &X) {
         gotoxy(38,6+cot);cout<<"║";gotoxy(61,6+cot);cout<<"║";
        gotoxy(8, 6+cot);
        Normal();
-            cout << "       "; gotoxy(17,6+cot);cout<<"                    ";
-         gotoxy(40,6+cot);cout << "                 ";gotoxy(63,6+cot);
-         cout<<"               ";
+         cout << "       "; gotoxy(16,6+cot);cout<<"                     ";
+         gotoxy(39,6+cot);cout << "                 ";gotoxy(62,6+cot);
+         cout<<"                             ";
          cot++;
 }
      X.liet_ke_danh_sach_VT_theo_MaSo(v,n);
      HighLight();
      int m = 0; 
+     X.temptree = NULL;
      if(X.kt %20 == 0) {
          m = X.kt/20;
 
@@ -1098,9 +1137,22 @@ void Case1(lopvattu &X) {
             getline(cin, X.vattu.MAVT);
             if(!XuLyNhapLieu::chuanHoaMAVT(X.vattu.MAVT)) {
                 temp = 0;
-                gotoxy(49,10); cout<<"                          ";
+                if(X.vattu.SoLuongTon != -1) {
+                gotoxy(45,16); cout<< X.vattu.SoLuongTon;}
+            gotoxy(38,12); cout<< X.vattu.TENVT;
+            gotoxy(39,14); cout<< X.vattu.DVT;
                 break;
-            }
+            } gotoxy(49,10);cout<<"                    ";
+            gotoxy(49,10);cout<<X.vattu.MAVT;
+            X.temptree  = X.Tim_kiem_theo_maVT(X.dsvt, X.vattu.MAVT);
+       if(X.temptree != NULL && X.temptree->vt.TENVT!="") {
+            BaoLoi("Mã VT đã có trong danh sách ", "hoặc không đúng định dạng","");
+            gotoxy(45,16); cout<< X.vattu.SoLuongTon;
+            gotoxy(38,12); cout<< X.vattu.TENVT;
+            gotoxy(39,14); cout<< X.vattu.DVT;
+
+        temp = 0; 
+    }    
             break;
             case 2:  gotoxy(38,12); cout<<"                      ";gotoxy(38,12);
              getline(cin, X.vattu.TENVT);break;
@@ -1109,16 +1161,15 @@ void Case1(lopvattu &X) {
             case 4: gotoxy(45,16); cout<<"            ";gotoxy(45,16);
             X.vattu.SoLuongTon = XuLyNhapLieu::ktrasonguyen();
             if (X.vattu.SoLuongTon == -1) {
-            gotoxy(45,16); cout<<"            ";
+            gotoxy(45,16); cout<< X.vattu.SoLuongTon;
             gotoxy(38,12); cout<< X.vattu.TENVT;
             gotoxy(39,14); cout<< X.vattu.DVT;
-            temp = 3;
-            break;  
+            temp = 3;  
         } break;
             case 5: flag = false; break;
-            case 6: X.temptree  = X.Tim_kiem_theo_maVT(X.dsvt, X.vattu.MAVT);
-       if(X.temptree == NULL) {
-            BaoLoi("Mã VT không đúng định dạng", "hoặc lớn hơn 1000","");
+            case 6:
+       if(X.vattu.MAVT == "") {
+            BaoLoi("Mã VT không được để trống", "","");
         temp = 0; break;
     }    
         int t = xacnhanluachon();
@@ -1249,6 +1300,14 @@ void Case1(lopvattu &X) {
                 break;
             } int t = xacnhanluachon();
             if(t == 1) {
+                if(X.vattu.TENVT=="")
+                {
+                    X.vattu.TENVT=X.temptree->vt.TENVT;
+                }
+                if(X.vattu.DVT=="")
+                {
+                    X.vattu.DVT=X.temptree->vt.DVT;
+                }
                 X.ChinhsuaVT(X.temptree, X.vattu);  flag = false;
             } else {
                 Normal();
@@ -1295,9 +1354,9 @@ void Case2(lopvattu &X) {
         gotoxy(38,6+cot);cout<<"║";gotoxy(61,6+cot);cout<<"║";
        gotoxy(8, 6+cot);
        Normal();
-            cout << "       "; gotoxy(17,6+cot);cout<<"                    ";
+            cout << "       "; gotoxy(17,6+cot);cout<<"                     ";
          gotoxy(40,6+cot);cout << "                 ";gotoxy(63,6+cot);
-         cout<<"               ";
+         cout<<"                             ";
          cot++;
     }
 
@@ -1386,6 +1445,10 @@ string filechitiethoadon;
         int thang = 0;
         int doanhthuthang = 0;
     };
+    struct  tkcthd{
+        string tenvt;
+        PTRCTHD cthd;
+    };
     nam Nam[12];
     DSNV dsnv;
     NhanVien tnv;
@@ -1394,12 +1457,12 @@ string filechitiethoadon;
     int dem = 0; int dem2 = 0; int dem3 = 0; int dem4 = 0;
     Date d1, d2;
     thongkehoadon a1[1000];
-    PTRCTHD a2[5000];
+    tkcthd a2[5000];
     NhanVien* Temp;
     CT_HoaDon a3[200];
     HoaDon Hd;
     PTRHD PTR;
-    PTRCTHD PTRCT;
+    PTRHD PTRhd;
     HoaDon mamoinhat;
     nhanvien(string Filenhanvien, string Filehoadon, string Filechitiethoadon) {
         filenhanvien = Filenhanvien;
@@ -1463,7 +1526,7 @@ string filechitiethoadon;
         PTRHD temp = Temp->dshd;
         while(temp!=NULL) {
             if(mahd == temp->hd.SoHD) {
-                PTRCT = temp->hd.dscthd;
+                PTRhd = temp;
                 return 1;
             }
             temp = temp->next;
@@ -1625,40 +1688,49 @@ void mofilechitiethoadon(PTRCTHD &temp, ifstream &ct) {
 }
 void mofilehoadon(PTRHD &temp, ifstream &h, ifstream &cthd) {
     string loai;
-    string d,m,y,tg;
-    if(h.is_open()) {
+    string d, m, y, tg;
+    if (h.is_open()) {
         string line;
-        while(getline(h, line)){
-            if(line[0] == 'N'&&line[1]=='V') {
+        while (getline(h, line)) {
+            // Bỏ qua dòng chứa Mã nhân viên
+            if (line[0] == 'N' && line[1] == 'V') {
                 continue;
             }
-            if(line[0] == '.'|| line == "") {
+            
+            // Gặp dấu chấm là hết danh sách hóa đơn của 1 nhân viên
+            if (line[0] == '.' || line == "") {
                 reverse(temp);
-               /*if(temp != NULL) {
-                string soma1 = mamoinhat.SoHD.substr(mamoinhat.SoHD.length() - 4);
-    string soma = temp->hd.SoHD.substr(temp->hd.SoHD.length() - 4);
-    if(soma > soma1) {
-        mamoinhat.SoHD = temp->hd.SoHD;
-    }
-                }*/
+                // XÓA ĐOẠN CODE CŨ Ở ĐÂY (đoạn so sánh soma, soma1)
+                // Vì nó kiểm tra sai vị trí node sau khi đảo ngược
                 return;
             }
+
+            // Xử lý đọc dòng hóa đơn
             stringstream ss(line);
             HoaDon hd;
-            getline(ss, hd.SoHD,',');
-            getline(ss, hd.Loai, ',');  
+            getline(ss, hd.SoHD, ',');
+            getline(ss, hd.Loai, ',');
             getline(ss, d, '/');
             getline(ss, m, '/');
-            getline(ss, y,'.');
+            getline(ss, y, '.');
             getline(ss, tg);
+            
             hd.NgayLapHoaDon.day = stoi(d);
             hd.NgayLapHoaDon.month = stoi(m);
             hd.NgayLapHoaDon.year = stoi(y);
             hd.trigia = stoi(tg);
             hd.dscthd = NULL;
+
+            // --- SỬA Ở ĐÂY: Cập nhật mã mới nhất ngay khi đọc ---
+            // So sánh nguyên chuỗi string sẽ chính xác cả Năm/Tháng/Số
+            if (hd.SoHD > mamoinhat.SoHD) {
+                mamoinhat.SoHD = hd.SoHD;
+            }
+            // ----------------------------------------------------
+
             mofilechitiethoadon(hd.dscthd, cthd);
             insert_begin(temp, hd);
-            }
+        }
     }
 }
  void suaNhanVien(NhanVien* &temp, NhanVien nv) {
@@ -1764,12 +1836,12 @@ void dohdvaomang(PTRHD hd) {
     }
 
 }
-void  docthdvaomang(PTRCTHD cthd) {
+void  docthdvaomang(PTRHD cthd) {
     b = 0;
-      PTRCTHD temp = cthd;
+      PTRCTHD temp = cthd->hd.dscthd;
     for(int i = 0; temp != NULL && i <500; i++) {
         b++;
-        a2[i] = temp;
+        a2[i].cthd = temp;
         temp = temp->next;
     }
 
@@ -1789,40 +1861,50 @@ void display(PTRHD Dshd, int v, int n){//duyệt danh sách
          cot++; 
     }
 }
-void displaytkhd( int v, int n){//duyệt danh sách 
-     if (a1[0].ptrhd == NULL){ 
-          cout<<"Danh sách rỗng"<<endl; 
-          return; 
-     }  
-      int cot = 0;
-        for(int i = v; i < n && i < dem3; i++) {    
-        gotoxy(8, 6+cot);
-            cout << a1[i].ptrhd->hd.SoHD; gotoxy(24,6+cot);cout<<a1[i].ptrhd->hd.Loai;gotoxy(37,6+cot);
-            cout<< a1[i].ptrhd->hd.NgayLapHoaDon.day<<"/"<<a1[i].ptrhd->hd.NgayLapHoaDon.month<<"/"<<
-            a1[i].ptrhd->hd.NgayLapHoaDon.year; gotoxy(52, 6+cot); cout<<a1[i].maNV;gotoxy(72, 6+cot);
-             cout<< a1[i].ptrhd->hd.trigia<<" VND";
-         cot++; 
+void displaytkhd(int v, int n) {
+    if (dem3 == 0) {
+        gotoxy(40, 15); cout << "KHÔNG CÓ HÓA ĐƠN NÀO TRONG KHOẢNG NÀY";
+        return;
+    }
+    
+    int dongHienTai = 0;
+    for (int i = v; i < n && i < dem3; i++) {
+        gotoxy(8, 6 + dongHienTai);  cout << a1[i].ptrhd->hd.SoHD;
+        gotoxy(24, 6 + dongHienTai); cout << (a1[i].ptrhd->hd.Loai == "N" ? "NHẬP" : "XUẤT");
+        gotoxy(37, 6 + dongHienTai); cout << a1[i].ptrhd->hd.NgayLapHoaDon.day << "/" 
+                                         << a1[i].ptrhd->hd.NgayLapHoaDon.month << "/" 
+                                         << a1[i].ptrhd->hd.NgayLapHoaDon.year;
+        
+        // Tìm tên nhân viên dựa trên mã đã lưu trong mảng a1
+        tnv.MANV = a1[i].maNV;
+        if (timkiemtheomanhanvien(tnv)) {
+            gotoxy(52, 6 + dongHienTai); cout << Temp->HO << " " << Temp->TEN;
+        }
+        
+        gotoxy(72, 6 + dongHienTai); cout << fixed << setprecision(0) << a1[i].ptrhd->hd.trigia << " VNĐ";
+        dongHienTai++;
     }
 }
 void bbsort() {
     for(int i = 0; i < dem4; i++) {
         for(int j = i+1; j < dem4; j++) {
-            if(a2[i]->cthd.tongtienthoethang < a2[j]->cthd.tongtienthoethang) {
+            if(a2[i].cthd->cthd.tongtienthoethang < a2[j].cthd->cthd.tongtienthoethang) {
                 swap(a2[i], a2[j]);
             }
         }
     }
 }
 void displayt( int v, int n){//duyệt danh sách 
-     if (a2[0] == NULL){ 
+     if (a2[0].cthd == NULL){ 
           cout<<"Danh sách rỗng"<<endl; 
           return; 
      }  
      bbsort();
       int cot = 0;
-        for(int i = v; i < n&&i<dem4; i++) {    
-        gotoxy(17, 6+cot);
-            cout << a2[i]->cthd.MAVT; gotoxy(47,6+cot);cout<<a2[i]->cthd.tongtienthoethang<<" VNĐ";
+        for(int i = v; i < n&&i<dem4&&i<10; i++) {    
+        gotoxy(10, 6+cot);
+            cout << a2[i].cthd->cthd.MAVT; gotoxy(32, 6 + cot); cout<< a2[i].tenvt;
+            gotoxy(61, 6+cot);cout<<a2[i].cthd->cthd.tongtienthoethang<<" VNĐ";
          cot++; 
     }
 }
@@ -1862,17 +1944,19 @@ PTRCTHD create_nodecthd(CT_HoaDon Cthd){//tạo node rời rạc có giá trị 
           cthd->next = p;//thiết lập lại liên kết cho start 
      } 
 }   
-void displaycthd(PTRCTHD Cthd, int v, int n){//duyệt danh sách 
+void displaycthd(lopvattu &X, PTRHD Cthd, int v, int n){//duyệt danh sách 
     if (Cthd == NULL){ 
           cout<<"Danh sách rỗng"<<endl; 
           return; 
      } 
         docthdvaomang(Cthd);
       int cot = 0;
-        for(int i = v; i < n && i < b; i++) {    
+        for(int i = v; i < n && i < b; i++) { 
+            X.temptree = X.Tim_kiem_theo_maVT(X.dsvt, a2[i].cthd->cthd.MAVT);  
         gotoxy(8, 6+cot);
-            cout << a2[i]->cthd.MAVT; gotoxy(16,6+cot);cout<<a2[i]->cthd.soluong;gotoxy(39,6+cot);
-            cout<< a2[i]->cthd.DONGIA<<" VNĐ";gotoxy(62,6+cot); cout<<a2[i]->cthd.VAT<<"%";
+            cout << a2[i].cthd->cthd.MAVT; gotoxy(16,6+cot); cout<<X.temptree->vt.TENVT;gotoxy(42,6+cot);
+            cout<< a2[i].cthd->cthd.DONGIA<<" VNĐ";gotoxy(64,6+cot); cout<<a2[i].cthd->cthd.soluong;
+            gotoxy(80, 6+cot); cout<< a2[i].cthd->cthd.VAT<<" %";
          cot++;
     }
 } 
@@ -1914,77 +1998,87 @@ void taotaosohdngaylaphd(HoaDon &hd, HoaDon t) {
     hd.SoHD = ss.str();
 }
 
-bool timngaythang(Date d1, Date d2) {
-    dem3 = 0;
+void thongKeHoaDon(Date d1, Date d2) {
+    dem3 = 0; // Biến đếm số lượng hóa đơn thỏa điều kiện
+    long long batDau = XuLyNhapLieu::quyDoiNgay(d1.day, d1.month, d1.year);
+    long long ketThuc = XuLyNhapLieu::quyDoiNgay(d2.day, d2.month, d2.year);
 
-    for (int i = 0; i < dsnv.n; i++) {
-        PTRHD temp = dsnv.nodes[i]->dshd;
-
-        while (temp != NULL) {
-            Date ngay = temp->hd.NgayLapHoaDon;
-
-            bool lonHonHoacBang_d1 = false;
-            bool nhoHonHoacBang_d2 = false;
-
-            // so sánh >= d1
-            if (ngay.year > d1.year)
-                lonHonHoacBang_d1 = true;
-            else if (ngay.year == d1.year && ngay.month > d1.month)
-                lonHonHoacBang_d1 = true;
-            else if (ngay.year == d1.year && ngay.month == d1.month && ngay.day >= d1.day)
-                lonHonHoacBang_d1 = true;
-
-            // so sánh <= d2
-            if (ngay.year < d2.year)
-                nhoHonHoacBang_d2 = true;
-            else if (ngay.year == d2.year && ngay.month < d2.month)
-                nhoHonHoacBang_d2 = true;
-            else if (ngay.year == d2.year && ngay.month == d2.month && ngay.day <= d2.day)
-                nhoHonHoacBang_d2 = true;
-
-            // nằm trong khoảng [d1, d2]
-            if (lonHonHoacBang_d1 && nhoHonHoacBang_d2) {
-                a1[dem3].maNV = dsnv.nodes[i]->HO + dsnv.nodes[i]->TEN;
-                a1[dem3].ptrhd = temp;
-                dem3++;
-            }
-
-            temp = temp->next;
-        }
-    }
-
-    return dem3 > 0;
-}
-
-void tinhgiatine() {
-    bool flag;
-    dem4 = 0;
-    for(int i = 0; i < dem3; i++) {
-        PTRCTHD temp = a1[i].ptrhd->hd.dscthd;
-        while(temp != NULL) {
-            for(int i =0; i < dem4 ; i++) {
-                if(temp->cthd.MAVT == a2[i]->cthd.MAVT) {
-                    flag = true;
-                    a2[i]->cthd.tongtienthoethang += temp->cthd.DONGIA;
+    for (int i = 0; i <= dsnv.n; i++) {
+        PTRHD p = dsnv.nodes[i]->dshd;
+        while (p != NULL) {
+            long long ngayLap = XuLyNhapLieu::quyDoiNgay(p->hd.NgayLapHoaDon.day, 
+                                                       p->hd.NgayLapHoaDon.month, 
+                                                       p->hd.NgayLapHoaDon.year);
+            
+            // So sánh đơn giản bằng số nguyên
+            if (ngayLap >= batDau && ngayLap <= ketThuc) {
+                if (dem3 < 1000) { // Tránh tràn mảng a1
+                    a1[dem3].maNV = dsnv.nodes[i]->MANV; // Lưu mã NV để biết ai lập
+                    a1[dem3].ptrhd = p;
+                    dem3++;
                 }
             }
-            if(!flag) {
-                a2[dem4] = temp; 
-                a2[dem4]->cthd.tongtienthoethang = temp->cthd.DONGIA;
-                dem4++;
+            p = p->next;
+        }
+    } 
+}
+
+void tinhgiatine(lopvattu &X) {
+    dem4 = 0;
+    
+    // Reset mảng a2
+    for(int i = 0; i < 5000; i++) {
+        a2[i].cthd = NULL;
+        a2[i].tenvt = "";
+    }
+    
+    // Duyệt qua tất cả hóa đơn trong khoảng thời gian
+    for(int hdIndex = 0; hdIndex < dem3; hdIndex++) {
+        PTRCTHD temp = a1[hdIndex].ptrhd->hd.dscthd;
+        while(temp != NULL) {
+            bool found = false;
+            
+            // Kiểm tra xem vật tư đã có trong mảng a2 chưa
+            for(int vtIndex = 0; vtIndex < dem4; vtIndex++) {
+                if(temp->cthd.MAVT == a2[vtIndex].cthd->cthd.MAVT) {
+                    found = true;
+                    // Tính tổng tiền: số lượng * đơn giá * (1 + VAT/100)
+                    double tien = temp->cthd.soluong * temp->cthd.DONGIA * (1 + temp->cthd.VAT/100.0);
+                    a2[vtIndex].cthd->cthd.tongtienthoethang += (long long)tien;
+                    break;
+                }
             }
-            flag = false;
+            
+            // Nếu chưa có, thêm mới
+            if(!found) {
+                X.temptree = X.Tim_kiem_theo_maVT(X.dsvt, temp->cthd.MAVT);
+                if(X.temptree != NULL) {
+                    a2[dem4].tenvt = X.temptree->vt.TENVT;
+                    
+                    // Tạo node mới để lưu thông tin
+                    PTRCTHD newNode = new nodeCTHD;
+                    newNode->cthd = temp->cthd;
+                    
+                    // Tính tổng tiền cho vật tư này
+                    double tien = temp->cthd.soluong * temp->cthd.DONGIA * (1 + temp->cthd.VAT/100.0);
+                    newNode->cthd.tongtienthoethang = (long long)tien;
+                    newNode->next = NULL;
+                    
+                    a2[dem4].cthd = newNode;
+                    dem4++;
+                }
+            }
             temp = temp->next;
         }
     }
 }
-
 void timnam() {
      for(int i = 0; i < 12; i++) {
         Nam[i].thang = i + 1;  
         Nam[i].doanhthuthang = 0;
     }
     for(int i = 0; i <= dsnv.n; i++) {
+        if(dsnv.nodes[i] == NULL) continue; 
         PTRHD temp = dsnv.nodes[i]->dshd;
         while(temp != NULL) {
             if(temp->hd.NgayLapHoaDon.year == d1.year) { 
@@ -2019,12 +2113,24 @@ void Case3(lopvattu& X, nhanvien &Y) {
     int d = 1;
     int n = 20;
     int v = 0;
-    do
-  {
-    system("cls");
+     system("cls");
     Normal();
     taokhungdanhsach();
     taoghichumaso1();
+    do
+  {
+     int cot = 0;
+    for(int i = 0; i <  20; i++) {
+        SetColor(9);
+        gotoxy(15,6+cot);cout<<"║"; 
+        gotoxy(38,6+cot);cout<<"║";gotoxy(61,6+cot);cout<<"║";
+       gotoxy(8, 6+cot);
+       Normal();
+            cout << "       "; gotoxy(16,6+cot);cout<<"                      ";
+         gotoxy(39,6+cot);cout << "                      ";gotoxy(62,6+cot);
+         cout<<"                             ";
+         cot++;
+    }
      Y.indsnvtheoten(v,n);
      int m = 0; 
      if(Y.dsnv.n %20 == 0) {
@@ -2056,7 +2162,6 @@ void Case3(lopvattu& X, nhanvien &Y) {
              if(!XuLyNhapLieu::chuanHoaMaNV(Y.tnv.MANV)) {
                 temp = 0;
                 gotoxy(49,10); cout<<"                          ";
-                break;
             } gotoxy(51,10); cout<< Y.tnv.MANV;
             if(Y.timkiemtheomanhanvien(Y.tnv) == 1) {
             BaoLoi("Mã NV bị trùng", "hoặc lớn hơn 100","");
@@ -2064,14 +2169,29 @@ void Case3(lopvattu& X, nhanvien &Y) {
         }
             case 2:  gotoxy(40,12); cout<<"                   ";gotoxy(40,12);
             getline(cin, Y.tnv.HO);
-            gotoxy(40,12); cout << XuLyNhapLieu::chuanHoaTen(Y.tnv.HO);
+            if(!XuLyNhapLieu::chuanHoaTen(Y.tnv.HO)) {
+                temp = 1;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+        gotoxy(60,16); cout<<Y.tnv.PHAI;
+            } gotoxy(40,12); cout<< Y.tnv.HO;
             break;
             case 3:  gotoxy(41,14); cout<<"                   ";gotoxy(41,14);
             getline(cin, Y.tnv.TEN);
-            gotoxy(41,14); cout << XuLyNhapLieu::chuanHoaTen(Y.tnv.TEN);break;
+             if(!XuLyNhapLieu::chuanHoaTen(Y.tnv.TEN)) {
+                temp = 1;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+        gotoxy(60,16); cout<<Y.tnv.PHAI;
+            } gotoxy(41,14);cout<<Y.tnv.TEN;
+            break;
             case 4: gotoxy(60,16); cout<<"            ";gotoxy(60,16);
             getline(cin, Y.tnv.PHAI);
-            if(!XuLyNhapLieu::kiemTraPhai(Y.tnv.PHAI))
+            if(!XuLyNhapLieu::chuanHoaGioiTinh(Y.tnv.PHAI))  {
+                temp = 3;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+            } gotoxy(60,16); cout<<Y.tnv.PHAI;
             break;
             case 5: flag = false; break;
             case 6: if(Y.tnv.MANV == "") {
@@ -2105,14 +2225,18 @@ void Case3(lopvattu& X, nhanvien &Y) {
     temp = luachon;
         Normal();
     switch (luachon) {
-                case 1: {gotoxy(47,10); cout<<"                   ";gotoxy(47,10);
+                case 1: {gotoxy(51,10); cout<<"                   ";gotoxy(51,10);
             getline(cin, Y.tnv.MANV);
+            if(!XuLyNhapLieu::chuanHoaMaNV(Y.tnv.MANV)) {
+                temp = 0;
+                gotoxy(49,10); cout<<"                          ";
+            } gotoxy(51,10); cout<< Y.tnv.MANV;
     if(Y.timkiemtheomanhanvien(Y.tnv)) {      
         gotoxy(18,12); cout<<"2. Họ và tên nhân viên: "<<Y.Temp->HO<<" "<<Y.Temp->TEN;
         gotoxy(18,14); cout<<"3. Giới tính nhân viên: "<< Y.Temp->PHAI;
     }else {
-        BaoLoi("Không tìm thấy mã VT để xóa!", "","");
-        temp--;
+        BaoLoi("Không tìm thấy mã NV để xóa!", "","");
+        temp = 0;
     } }break;
             case 2: flag = false; break;
             case 3: if(Y.tnv.MANV == ""|| !Y.timkiemtheomanhanvien(Y.tnv)) {
@@ -2153,7 +2277,7 @@ void Case3(lopvattu& X, nhanvien &Y) {
     for(int i = 0; i < 3; i++) {
         suavt[i] = s[i];
     }
-    X.vattu = {"", "", "", -1};
+    Y.tnv = {"", "", "", ""};
     do{
     int luachon = X.menunhapVT(suavt, temp, t);
     temp = luachon;
@@ -2184,18 +2308,51 @@ void Case3(lopvattu& X, nhanvien &Y) {
            case 2:  if(t == 3) {
              flag = false; break;}
             gotoxy(39,12); cout<<"                   ";gotoxy(39,12);
-            getline(cin, Y.tnv.HO);break;
+            getline(cin, Y.tnv.HO);
+             if(!XuLyNhapLieu::chuanHoaTen(Y.tnv.HO)) {
+                temp = 1;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+        gotoxy(60,16); cout<<Y.tnv.PHAI;
+            } gotoxy(39,12); cout<<Y.tnv.HO;
+            break;
             case 3:  if(t==3)
             { BaoLoi("Hãy nhập nhân viên cần chỉnh sửa","","");
             temp = 0;
              break; }
             gotoxy(40,14); cout<<"                   ";gotoxy(40,14);
-            getline(cin, Y.tnv.TEN);break;
+            getline(cin, Y.tnv.TEN); 
+            if(!XuLyNhapLieu::chuanHoaTen(Y.tnv.TEN)) {
+                temp = 1;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+        gotoxy(60,16); cout<<Y.tnv.PHAI;
+            } gotoxy(40,14);cout<<"             ";;gotoxy(40,14);cout<<Y.tnv.TEN;
+            break;
             case 4:  gotoxy(59,16); cout<<"                   ";gotoxy(59,16);
-            getline(cin, Y.tnv.PHAI);break;
+            getline(cin, Y.tnv.PHAI);
+            if(!XuLyNhapLieu::chuanHoaGioiTinh(Y.tnv.PHAI))  {
+                temp = 3;
+                gotoxy(40,12); cout<< Y.tnv.HO;
+    gotoxy(41,14);cout<<Y.tnv.TEN;
+            } gotoxy(59,16); cout<<Y.tnv.PHAI;
+            break;
             case 5: flag = false; break;
             case 6: {int t = xacnhanluachon();
             if(t == 1) {
+                if(Y.tnv.HO=="")
+                {
+                    Y.tnv.HO=Y.Temp->HO;
+                }
+                if(Y.tnv.TEN=="")
+                {
+                    Y.tnv.TEN=Y.Temp->TEN;
+                }
+                if(Y.tnv.PHAI=="")
+                {
+                    Y.tnv.PHAI=Y.Temp->PHAI;
+                }
+                flag = false;
                 Y.suaNhanVien(Y.Temp, Y.tnv);
                   flag = false;
             } else {
@@ -2206,9 +2363,24 @@ void Case3(lopvattu& X, nhanvien &Y) {
             cout<<" ";
         }
     }
-    gotoxy(39,12); cout<<Y.tnv.HO;
-    gotoxy(40,14);cout<<Y.tnv.TEN;
-    gotoxy(59, 16); cout << Y.tnv.PHAI;
+    if(Y.tnv.HO=="")
+                {
+                 gotoxy(40,12);  cout<< Y.Temp->HO;
+                } else {
+                    gotoxy(40,12); cout<<Y.tnv.HO;
+
+                }
+                if(Y.tnv.TEN=="")
+                {
+                    gotoxy(41,14);  cout<< Y.Temp->TEN;
+                } else {
+                    gotoxy(41,14); cout<<Y.tnv.TEN;}
+                if(Y.tnv.PHAI=="")
+                {
+                    gotoxy(60,16);  cout<< Y.Temp->PHAI;
+                } else {
+                    gotoxy(60,16); cout<<Y.tnv.PHAI;
+                }
     break; 
             }
             }
@@ -2238,13 +2410,17 @@ bool nhapmaNV(lopvattu &X, nhanvien &Y) {
     switch (luachon) {
                 case 1: {gotoxy(51,10); cout<<"                   ";gotoxy(51,10);
             getline(cin, Y.tnv.MANV);
-    if(Y.timkiemtheomanhanvien(Y.tnv)) {      
+             if(!XuLyNhapLieu::chuanHoaMaNV(Y.tnv.MANV)) {
+                temp = 0;
+                gotoxy(49,10); cout<<"                          ";
+            } gotoxy(51,10); cout<< Y.tnv.MANV;
+             if(Y.timkiemtheomanhanvien(Y.tnv)) {      
         gotoxy(18,12); cout<<"2. Họ và tên nhân viên: "<<Y.Temp->HO<<" "<<Y.Temp->TEN;
         gotoxy(18,14); cout<<"3. Giới tính nhân viên: "<< Y.Temp->PHAI;
     }else {
         BaoLoi("Không tìm thấy mã NV để lập!", "hóa đơn","");
-        temp--;
-    } }break;
+        temp=0;
+    }break;  }
             case 2: return 0;
             case 3: if(Y.tnv.MANV == ""|| !Y.timkiemtheomanhanvien(Y.tnv)) {
                 BaoLoi("Hãy NV cần lập hóa đơn","","");
@@ -2286,21 +2462,58 @@ void nhapchitiethoadon(lopvattu &X, nhanvien &Y){
     bool flag = true;
     int temp = 0;
     do{
+        X.temptree = NULL;
+         gotoxy(18, 17); cout<<"F1: Lui trang     F2: Qua trang";
+        gotoxy(70,8); cout<<"Số vật tư: "<<"    "; gotoxy(81,8);cout<<dem + 1;
         Normal();
-        gotoxy(18, 17); cout<<"F1: Lui trang     F2: Qua trang";
         int luachon = X.menunhapVT(chitiethoadon,temp, 6);
         temp = luachon;
         Normal();
         switch (luachon) {
             case 1: gotoxy(49,10); cout<<"                   ";gotoxy(49,10);
-            getline(cin, Y.a3[dem].MAVT);break;
-            case 2:  gotoxy(36,12); cout<<"                   ";gotoxy(36,12);
-            cin>> Y.a3[dem].soluong;break;
-            case 3:  gotoxy(35,14); cout<<"                   ";gotoxy(35,14);
-            cin>> Y.a3[dem].DONGIA;break;
-            case 4: gotoxy(31,16); cout<<"            ";gotoxy(31,16);
-            cin >> Y.a3[dem].VAT;
+            getline(cin, Y.a3[dem].MAVT);
+            if(!XuLyNhapLieu::chuanHoaMAVT(Y.a3[dem].MAVT)) {
+                temp = 0;
+                gotoxy(36,12); cout<< Y.a3[dem].soluong;
+                gotoxy(35,14);cout<< Y.a3[dem].DONGIA;
+                gotoxy(31,16); cout<<Y.a3[dem].VAT;
+                break;
+            } gotoxy(49,10); cout<< Y.a3[dem].MAVT;
+            X.temptree  = X.Tim_kiem_theo_maVT1(X.dsvt, Y.a3[dem].MAVT);
+       if(X.temptree == NULL) {
+            BaoLoi("Mã VT không đúng định dạng", "hoặc không có trong kho","");
+            gotoxy(36,12); cout<< Y.a3[dem].soluong;
+                 gotoxy(35,14);cout<< Y.a3[dem].DONGIA;
+                gotoxy(31,16); cout<<Y.a3[dem].VAT;
+
+        temp = 0; 
+    }    gotoxy(60, 10); cout<<"                ";
+    gotoxy(60, 10); cout<<X.temptree->vt.TENVT;
             break;
+            case 2:  gotoxy(36,12); cout<<"                   ";gotoxy(36,12);
+            Y.a3[dem].soluong = XuLyNhapLieu::ktrasonguyen();
+            if (Y.a3[dem].soluong == -1) {
+             gotoxy(36,12); cout<< Y.a3[dem].soluong;
+                 gotoxy(35,14);cout<< Y.a3[dem].DONGIA;
+                gotoxy(31,16); cout<<Y.a3[dem].VAT;
+            temp = 1;  
+        } break;
+            case 3:  gotoxy(35,14); cout<<"                   ";gotoxy(35,14);
+            Y.a3[dem].DONGIA = XuLyNhapLieu::ktrasonguyen();
+            if (Y.a3[dem].DONGIA == -1) {
+             gotoxy(36,12); cout<< Y.a3[dem].soluong;
+                 gotoxy(35,14);cout<< Y.a3[dem].DONGIA;
+                gotoxy(31,16); cout<<Y.a3[dem].VAT;
+            temp = 2;  
+        } break;
+            case 4: gotoxy(31,16); cout<<"            ";gotoxy(31,16);
+            Y.a3[dem].VAT = XuLyNhapLieu::ktrasonguyen();
+            if (Y.a3[dem].VAT == -1) {
+             gotoxy(36,12); cout<< Y.a3[dem].soluong;
+                 gotoxy(35,14);cout<< Y.a3[dem].DONGIA;
+                gotoxy(31,16); cout<<Y.a3[dem].VAT;
+            temp = 1;  
+        } break;
             case 20: if(dem > 0) {
             dem--; 
             gotoxy(49,10); cout << Y.a3[dem].MAVT;
@@ -2315,11 +2528,27 @@ void nhapchitiethoadon(lopvattu &X, nhanvien &Y){
             case 5: flag = false; break;
             case 6: int t = xacnhanluachon();
             if(t == 1) {
-                for(int i = dem; i >= 0; i--) {
-                    Y.insert_begincthd(Y.Temp->dshd->hd.dscthd, Y.a3[i]);
-                    X.ktravatu(Y.a3[i].MAVT, Y.Temp->dshd->hd.Loai, Y.a3[i].soluong);
-                    Y.Temp->dshd->hd.trigia += Y.tinhDoanhThuCT(Y.a3[i]);
-                }  flag = false;
+                // TRƯỚC KHI LƯU HÓA ĐƠN
+bool du_hang = true;
+for (int i = 0; i < dem; i++) { // dem là số lượng vật tư trong hóa đơn tạm
+    if (!X.ktravatu(Y.a3[i].MAVT, "X", Y.a3[i].soluong)) {
+        du_hang = false;
+        break;
+    }
+}
+
+if (du_hang) {
+    // Nếu đủ hàng cho toàn bộ hóa đơn mới tiến hành trừ kho
+    for (int i = 0; i < dem; i++) {
+        Y.insert_begin(Y.Temp->dshd, Y.Hd);
+        X.nvvattu(Y.a3[i].MAVT, "X", Y.a3[i].soluong); // Trừ kho
+        Y.insert_begincthd(Y.PTR->hd.dscthd, Y.a3[i]); // Lưu vào DS liên kết
+        Y.mamoinhat.SoHD = Y.Hd.SoHD;
+    }
+    BaoLoi("Lập hóa đơn thành công!", "", "");
+} else {
+    BaoLoi("Hủy hóa đơn do không đủ hàng trong kho!", "", "");
+}  
             } else {
                 Normal();
                 for(int i = 0; i < 6; i++) {
@@ -2388,15 +2617,8 @@ void nhapchitiethoadon(lopvattu &X, nhanvien &Y){
     taokhungdanhsach4();
     taoghichumaso4();
      Y.displayt(v,n);
-     int m = 0; 
-    if(Y.dem4 %20 == 0) {
-         m = Y.dem4/20;
-
-     } else {
-        m = Y.dem4/20 + 1;
-     }
      HighLight();
-     gotoxy(90,2); cout<<d<<"/"<<m<<" ";
+     gotoxy(90,2); cout<<d<<"/"<<"1"<<" ";
      Normal();
     Luachon = getch(); 
     if (Luachon == 0) 
@@ -2447,18 +2669,23 @@ void nhapchitiethoadon(lopvattu &X, nhanvien &Y){
 
 
     }
-    void inchitiethoadon(nhanvien&Y) {
+    void inchitiethoadon(lopvattu &X, nhanvien &Y, string m) {
         char Luachon;
     int d = 1;  
     int n = 20;
     int v = 0;
     do
   {
-        system("cls");
+    system("cls");
+    gotoxy(5, 0); cout<< "Mã hóa đơn: "<<m;
+    gotoxy(5, 1); cout<<"Loại hóa đơn: "<<Y.PTRhd->hd.Loai;
+    gotoxy(5, 2); cout<<"Ngày lập hóa đơn "<<Y.PTRhd->hd.NgayLapHoaDon.day<<"/"<<Y.PTRhd->hd.NgayLapHoaDon.month
+            <<"/"<<Y.PTRhd->hd.NgayLapHoaDon.year;
+    gotoxy(60,27); cout<<"TỔNG TRỊ GIÁ HÓA ĐƠN: "<<Y.PTRhd->hd.trigia;
     Normal();
     taokhungdanhsach2();
     taoghichumaso2();
-     Y.displaycthd(Y.PTRCT, v, n);
+     Y.displaycthd(X, Y.PTRhd, v, n);
      int m = 0; 
     if(Y.b %20 == 0) {
          m = Y.b/20;
@@ -2495,7 +2722,8 @@ void Case4(lopvattu &X, nhanvien &Y) {
   {
     system("cls");
     Normal();
-    taokhungdanhsachhoadon();
+    gotoxy(5, 1); cout<<"Tên nhân viên: "<<Y.Temp->HO<<" "<<Y.Temp->TEN;
+       taokhungdanhsachhoadon();
     taoghichumasocase4();
      Y.display(Y.Temp->dshd, v, n);
     int m = 0; 
@@ -2520,7 +2748,6 @@ void Case4(lopvattu &X, nhanvien &Y) {
     gotoxy(33,10); cout<<Y.Hd.SoHD;
     gotoxy(37,12); cout<<Y.Hd.NgayLapHoaDon.day<<"/"<<Y.Hd.NgayLapHoaDon.month
             <<"/"<<Y.Hd.NgayLapHoaDon.year;
-            Y.mamoinhat.SoHD = Y.Hd.SoHD;
     do {
         Normal();
         int luachon = X.menunhapVT(nhaphd,temp, 5);
@@ -2536,13 +2763,14 @@ void Case4(lopvattu &X, nhanvien &Y) {
                 BaoLoi("Sai định dạng","","");
                 gotoxy(37,12); cout<<Y.Hd.NgayLapHoaDon.day<<"/"<<Y.Hd.NgayLapHoaDon.month
             <<"/"<<Y.Hd.NgayLapHoaDon.year;
-            cout<<Y.Hd.Loai;
-            }break;
+            gotoxy(32,14); cout<<Y.Hd.Loai;
+            } gotoxy(32,14);cout<<Y.Hd.Loai;break;
             case 4: flag = false; break;
             case 5: int t = xacnhanluachon();
             if(t == 1) {
-                Y.insert_begin(Y.Temp->dshd, Y.Hd);  flag = false;
+                //Y.insert_begin(Y.Temp->dshd, Y.Hd);
                 nhapchitiethoadon(X,Y);
+                //Y.mamoinhat.SoHD = Y.Hd.SoHD;
                 flag = false;
             } else {
                 Normal();
@@ -2567,17 +2795,17 @@ void Case4(lopvattu &X, nhanvien &Y) {
     temp = luachon;
         Normal();
     switch (luachon) {
-                case 1: {gotoxy(35,10); cout<<"                   ";gotoxy(35,10);
+                case 1: {gotoxy(33,10); cout<<"                   ";gotoxy(33,10);
             getline(cin, mahd);
     if(Y.timmkiemthomahoadon(mahd)) {      
-        gotoxy(18,12); cout<<"Số lượng: "<<Y.PTRCT->cthd.soluong;
-        gotoxy(18,14); cout<<"Đơn vị tính: "<< Y.PTRCT->cthd.DONGIA;
-        gotoxy(18, 16); cout<<"VAT: " << Y.PTRCT->cthd.VAT; 
+        gotoxy(18,12); cout<<"2. Loại: "<<Y.PTRhd->hd.Loai;
+        gotoxy(18,14); cout<<"3. Ngày lập hóa đơn: "<<Y.PTRhd->hd.NgayLapHoaDon.day<<"/"<<Y.PTRhd->hd.NgayLapHoaDon.month
+            <<"/"<<Y.PTRhd->hd.NgayLapHoaDon.year;
     }else {
         BaoLoi("Không tìm thấy mã HD!", "","");
         temp--;
     } }break;
-            case 2: flag = false;
+            case 2: flag = false; break;
             case 3: if(Y.tnv.MANV == ""|| !Y.timmkiemthomahoadon(mahd)) {
                 BaoLoi("Hãy nhập hóa đơn cần xem","","");
                 temp = 0;
@@ -2585,7 +2813,7 @@ void Case4(lopvattu &X, nhanvien &Y) {
             }
             int t = xacnhanluachon();
             if(t == 1) {
-                inchitiethoadon(Y);flag= false;
+                inchitiethoadon(X, Y, mahd);flag= false;
             } else {
                 Normal();
                 for(int i = 0; i < 6; i++) {
@@ -2595,9 +2823,9 @@ void Case4(lopvattu &X, nhanvien &Y) {
         }
     }
     if(mahd!= "") {
-        gotoxy(18,12); cout<<"Số lượng: "<<Y.PTRCT->cthd.soluong;
-        gotoxy(18,14); cout<<"Đơn vị tính: "<< Y.PTRCT->cthd.DONGIA;
-        gotoxy(18, 16); cout<<"VAT: " << Y.PTRCT->cthd.VAT;
+        gotoxy(18,12); cout<<"2. Loại: "<<Y.PTRhd->hd.Loai;
+        gotoxy(18,14); cout<<"3. Ngày lập hóa đơn: "<<Y.PTRhd->hd.NgayLapHoaDon.day<<"/"<<Y.PTRhd->hd.NgayLapHoaDon.month
+            <<"/"<<Y.PTRhd->hd.NgayLapHoaDon.year;
     } 
             } break;
     } 
@@ -2613,43 +2841,71 @@ void Case4(lopvattu &X, nhanvien &Y) {
     }
 }while (true);}
 }
-
+int xulyngaythang(nhanvien& Y) {
+   int n = XuLyNhapLieu::ktrasonguyen();
+            if (n == -1) {
+            gotoxy(30,10); cout<< Y.d1.day;
+            gotoxy(33,10); cout<< Y.d1.month;
+            gotoxy(36,10); cout<< Y.d1.year;
+            gotoxy(30,12); cout<< Y.d2.day;
+            gotoxy(33, 12); cout << Y.d2.month;
+            gotoxy(36, 12); cout<< Y.d2.year;}
+            return n;
+}
 void nhapngaythang(lopvattu& X, nhanvien &Y) {
     khungnhap();
     gotoxy(40,8); cout <<"NHẬP NGÀY THÁNG";
     bool flag = true;
     int temp = 0;
     XuLyNhapLieu::Date d;
-    gotoxy(30,10); cout<<"  /  /    ";
-    gotoxy(30,12); cout<<"  /  /    ";
+    gotoxy(30,10); cout<<"0 /0 /0    ";
+    gotoxy(31,12); cout<<"0 /0 /0    ";
     do{
         Normal();
         int luachon = X.menunhapVT(ngaythang,temp, 4);
         temp = luachon;
         Normal();
         switch (luachon) {
-            case 1: gotoxy(30,10); cout<<"  /  /              ";gotoxy(51,10);
-            gotoxy(30,10); cin>> Y.d1.day;gotoxy(33, 10); cin>>Y.d1.month; gotoxy(36, 10); cin>> Y.d1.year;
-            d.day = Y.d1.day;
-            d.month = Y.d1.month;
-            d.year = Y.d2.year;
-            /*if(!XuLyNhapLieu::kiemTraNgayHopLe(d)) {
-                temp = 0;
-                gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;break;      
-            }*/ break;
-            case 2:  gotoxy(30,12); cout<<"  /  /           ";gotoxy(40,12);
-           gotoxy(30,12); cin>> Y.d2.day;gotoxy(33, 12); cin>>Y.d2.month; gotoxy(36, 12); cin>> Y.d2.year;
-            d.day = Y.d2.day;
-            d.month = Y.d2.month;
-            d.year = Y.d2.year;
-            if(!XuLyNhapLieu::kiemTraNgayHopLe(d)) {
-                temp = 1;
-                gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;break;      
-            } break;
+            case 1: gotoxy(30,10); cout<<"0 /0 /0              ";
+             Nhaplaid11:
+             gotoxy(30,10); Y.d1.day = xulyngaythang(Y);
+            if(Y.d1.day == -1|| Y.d1.day > 31) {
+                goto Nhaplaid11;
+            } 
+            
+            Nhaplaid12:
+            gotoxy(33, 10); Y.d1.month =  xulyngaythang(Y);
+            if (Y.d1.month == -1 || Y.d1.month > 12) {
+                goto Nhaplaid12;
+            } 
+            Nhaplaid13:
+            gotoxy(36, 10);Y.d1.year = xulyngaythang(Y);
+            if(Y.d1.year == -1) {
+                goto Nhaplaid13;
+            }
+            break;
+            case 2: gotoxy(31,12); cout<<"0 /0 /0            ";
+             Nhaplaid21:
+             gotoxy(31,12); Y.d2.day = xulyngaythang(Y);
+            if(Y.d2.day == -1 || Y.d2.day > 31) {
+                goto Nhaplaid21;
+            } 
+            
+            Nhaplaid22:
+            gotoxy(34, 12); Y.d2.month =  xulyngaythang(Y);
+            if (Y.d2.month == -1 || Y.d2.month > 12) {
+                goto Nhaplaid22;
+            } 
+            Nhaplaid23:
+            gotoxy(37, 12);Y.d2.year = xulyngaythang(Y);
+            if(Y.d2.year == -1) {
+                goto Nhaplaid23;
+            }
+            break;
             case 3: flag = false; break;
-            case 4: if(Y.timngaythang(Y.d1, Y.d2)) {
-                 int t = xacnhanluachon();
+            case 4: int t = xacnhanluachon();
             if(t == 1) {
+                Y.thongKeHoaDon(Y.d1, Y.d2);
                 intkhd(Y);  flag = false;
             } else {
                 Normal();
@@ -2662,7 +2918,6 @@ void nhapngaythang(lopvattu& X, nhanvien &Y) {
     gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;break; 
             }
     } 
-        } 
   }while (flag);
 }
 
@@ -2671,32 +2926,55 @@ void nhapngaythang1(lopvattu& X, nhanvien &Y) {
     gotoxy(40,8); cout <<"NHẬP NGÀY THÁNG";
     bool flag = true;
     int temp = 0;
-    gotoxy(30,10); cout<<"  /  /    ";
-    gotoxy(30,12); cout<<"  /  /    ";
+    gotoxy(30,10); cout<<"0 /0 /0    ";
+    gotoxy(31,12); cout<<"0 /0 /0    ";
     do{
         Normal();
         int luachon = X.menunhapVT(ngaythang,temp, 4);
         temp = luachon;
         Normal();
         switch (luachon) {
-            case 1: gotoxy(30,10); cout<<"  /  /              ";gotoxy(51,10);
-            gotoxy(30,10); cin>> Y.d1.day;gotoxy(33, 10); cin>>Y.d1.month; gotoxy(36, 10); cin>> Y.d1.year;
-            /*if(!XuLyNhapLieu::kiemTraNgayHopLe(d)) {
-                temp = 0;
-                gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;break;      
-            }*/ break;
-            case 2:  gotoxy(30,12); cout<<"  /  /           ";gotoxy(40,12);
-           gotoxy(30,12); cin>> Y.d2.day;gotoxy(33, 12); cin>>Y.d2.month; gotoxy(36, 12); cin>> Y.d2.year;
-           /* if(!XuLyNhapLieu::kiemTraNgayHopLe(d)) {
-                temp = 1;
-                gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;break;      
-            }*/ break;
+            case 1: gotoxy(30,10); cout<<"0 /0 /0              ";
+             Nhaplaid11:
+             gotoxy(30,10); Y.d1.day = xulyngaythang(Y);
+            if(Y.d1.day == -1|| Y.d1.day > 31) {
+                goto Nhaplaid11;
+            } 
+            
+            Nhaplaid12:
+            gotoxy(33, 10); Y.d1.month =  xulyngaythang(Y);
+            if (Y.d1.month == -1 || Y.d1.month > 12) {
+                goto Nhaplaid12;
+            } 
+            Nhaplaid13:
+            gotoxy(36, 10);Y.d1.year = xulyngaythang(Y);
+            if(Y.d1.year == -1) {
+                goto Nhaplaid13;
+            }
+            break;
+            case 2: gotoxy(31,12); cout<<"0 /0 /0            ";
+             Nhaplaid21:
+             gotoxy(31,12); Y.d2.day = xulyngaythang(Y);
+            if(Y.d2.day == -1 || Y.d2.day > 31) {
+                goto Nhaplaid21;
+            } 
+            
+            Nhaplaid22:
+            gotoxy(34, 12); Y.d2.month =  xulyngaythang(Y);
+            if (Y.d2.month == -1 || Y.d2.month > 12) {
+                goto Nhaplaid22;
+            } 
+            Nhaplaid23:
+            gotoxy(37, 12);Y.d2.year = xulyngaythang(Y);
+            if(Y.d2.year == -1) {
+                goto Nhaplaid23;
+            }
+            break;
             case 3: flag = false; break;
-            case 4: if(Y.timngaythang(Y.d1, Y.d2)) {
-                Y.tinhgiatine();
-                 int t = xacnhanluachon();
+            case 4: int t = xacnhanluachon();
             if(t == 1) {
-
+                Y.thongKeHoaDon(Y.d1, Y.d2);
+                Y.tinhgiatine(X);
                 indt(Y);  flag = false;
             } else {
                 Normal();
@@ -2709,8 +2987,6 @@ void nhapngaythang1(lopvattu& X, nhanvien &Y) {
     gotoxy(40,12); cout<< Y.d2.day; cout<<Y.d2.month; cout<< Y.d2.year;;break; 
             }
     } 
-
-        } 
   }while (flag);
 }
 
