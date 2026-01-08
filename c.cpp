@@ -1,11 +1,23 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include<fstream>
+#include <sstream>
+#include <string>
+#include <iomanip>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <windows.h>
+#include <conio.h>
 #include "D:/mylib.h"
 using namespace std;
-const int MAX_NhanVien = 500;
-const int MAX_VatTu = 1000;
-const int so_item = 8;
-const int dong =9;
-const int cot =10;
+const int MAX_NHANVIEN = 500;// số nhân viên tối đa
+const int MAX_VATTU = 1000;// số vật tư tối đá
+const int so_MENU_ITEM = 8;// số mục trong menu
+// toạn độ menu
+const int DONG_MENU =9;// dòng bắt đầu menu
+const int COT_MENU  =10;// cột bắt đầu menu
+// Mã phí đặc biệt
 const int Left = 75;
 const int Right = 77;
 const int Up = 72; // Extended code 
@@ -17,7 +29,8 @@ const int ESC = 27;
 const int A = 65;
 const int D = 68;
 
-string thucdon[so_item] = {"1. In danh sách vật tư theo mã số        ",
+string menuchinh[SO_MUC_MENU] = {
+                           "1. In danh sách vật tư theo mã số        ",
 			               "2. In danh sách vật tư theo tên          ", 
                            "3. In danh sách nhân viên theo tên       ",
                            "4. Lập hóa đơn      ",
@@ -25,21 +38,68 @@ string thucdon[so_item] = {"1. In danh sách vật tư theo mã số        ",
                            "6. Thống kê Top 10 vật tư có giá cao nhất     ",
                            "7. Thống kê doanh thu của từng tháng theo năm       ",
 						   "8. Kết thúc chương trình             "};
-string nhapvt[6] = {"1. Nhập mã vật tư(VD: VT0099):","2. Nhập tên vật tư:", "3. Nhập đơn vị tính:","4. Nhập số lượng tồn(0-9):",
- " Hủy "," Xác nhận "};
-string xoavt[3] = {"Nhập mã vật tư(VD: VT0099):"," Hủy "," Xác nhận "};
-string suavt[5] = {"Nhập mã vật tư(VD: VT0099):", "", ""," Hủy "," Xác nhận "};
-string laphoadon[5] = {"1. Số hóa đơn:", "2. Ngày lập hóa đơn:","3. Loại hóa đơn:"," Hủy "," Xác nhận "};
-string chitiethoadon[6] = {"1. Nhập mã vật tư(VD: VT0099):","2. Nhập số lượng:", "3. Nhập đơn giá:","4. Nhập VAT:",
-    " Hủy "," Xác nhận "};
-string nhaphd[5] = {"1. Mã hóa đơn:","2. Ngày tháng năm:", "3. Nhập loại:",
- " Hủy "," Xác nhận "};
-string nhapmahd[3] = {"1. Mã hóa đơn:"," Hủy "," Xác nhận "};
-string ngaythang[4] = {"1. Từ ngày:", "2. Đến ngày:",  " Hủy ", " Xác nhận "};
-string nam[3] = {"1. Nhập năm:",  " Hủy ", " Xác nhận "};
-string xoanv[3] = {"1. Nhập mã nhân viên(VD: NV099):"," Hủy "," Xác nhận "};
-string suanv[3] = {"1. Nhập mã nhân viên:",  " Hủy ", " Xác nhận "};
+string menuNhapVatTu[6] = {"1. Nhập mã vật tư(VD: VT0099):",
+                   "2. Nhập tên vật tư:",
+                    "3. Nhập đơn vị tính:",
+                    "4. Nhập số lượng tồn(0-9):",
+                     " Hủy ",
+                     " Xác nhận "};
+string menuXoaVatTu[3] = {"Nhập mã vật tư(VD: VT0099):",
+                          " Hủy ",
+                          " Xác nhận "};
+string menuSuaVatTu[5] = {"Nhập mã vật tư(VD: VT0099):",
+"                         ", "",
+                         " Hủy ",
+                        " Xác nhận "};
+string menuLapHoaDon[5] = {
+    "1. Số hóa đơn:", 
+    "2. Ngày lập hóa đơn:",
+    "3. Loại hóa đơn:",
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuChiTietHoaDon[6] = {
+    "1. Nhập mã vật tư(VD: VT0099):",
+    "2. Nhập số lượng:", 
+    "3. Nhập đơn giá:",
+    "4. Nhập VAT:",
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuNhapHoaDon[5] = {
+    "1. Mã hóa đơn:",
+    "2. Ngày tháng năm:", 
+    "3. Nhập loại:",
+    " Hủy ", 
+    " Xác nhận "
+};
 
+string menuNhapMaHoaDon[3] = {
+    "1. Mã hóa đơn:",
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuNgayThang[4] = {
+    "1. Từ ngày:", 
+    "2. Đến ngày:",  
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuNam[3] = {
+    "1. Nhập năm:",  
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuXoaNhanVien[3] = {
+    "1. Nhập mã nhân viên(VD: NV099):",
+    " Hủy ", 
+    " Xác nhận "
+};
+string menuSuaNhanVien[3] = {
+    "1. Nhập mã nhân viên:",  
+    " Hủy ", 
+    " Xác nhận "
+};
 void Normal () {
 	SetColor(15); // white 
 	SetBGColor(0);// black
@@ -48,7 +108,7 @@ void HighLight () {
 	SetColor(15);
 	SetBGColor(1); // blue
 }
-void taokhung() {
+void VeKhungBaoQuanh() {
     SetColor(9);    //30 170
     gotoxy(7,3);
     cout<< "╔";    
@@ -69,7 +129,7 @@ void taokhung() {
     cout << "╝";
 }
 
-void taoghichumenu() {
+void VeGhiChuMenu() {
     gotoxy(8, 7);
     for(int i = 0; i <85; i++) {
         cout << "═";
@@ -91,14 +151,15 @@ void taoghichumenu() {
     gotoxy(70,19); cout<<"Right: PHẢI";
     gotoxy(70,20); cout<<"Enter: ĐỂ CHỌN";
 }
-void taokhungdanhsach() {
-    taokhung();
+void VeKhungDanhSach() {
+    VeKhungBaoQuanh();
     SetColor(9);
     gotoxy(15, 4); cout<<"║";
     gotoxy(38, 4); cout<<"║";
     gotoxy(61, 4);cout<<"║";
     Normal();
-    gotoxy(8,4); cout<<" MãVT";gotoxy(17, 4); cout<<" Tên vật tư";
+    gotoxy(8,4); cout<<" MãVT";
+	gotoxy(17, 4); cout<<" Tên vật tư";
     gotoxy(40, 4);cout<<" Đơn vị tính";
     gotoxy(63, 4); cout<< " Số lượng tồn";
     SetColor(9);
@@ -122,15 +183,16 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taokhungdanhsach2() {
-    taokhung();
+void VeKhungChiTietHoaDon() {
+    VeKhungBaoQuanh();
     SetColor(9);
     gotoxy(15, 4); cout<<"║";
     gotoxy(41, 4); cout<<"║";
     gotoxy(63, 4);cout<<"║";
     gotoxy(79, 4);cout<<"║";
     Normal();
-    gotoxy(8,4); cout<<"Mã VT";gotoxy(17, 4); cout<<"Tên vật tư";
+    gotoxy(8,4); cout<<"Mã VT";
+	gotoxy(17, 4); cout<<"Tên vật tư";
     gotoxy(44, 4); cout<<"Đơn giá VNĐ";
     gotoxy(65, 4);cout<<"Số lượng";
     gotoxy(81, 4); cout<< "VAT";
@@ -155,16 +217,18 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taokhungdanhsach3() {
-    taokhung();
+void VeKhungThongKeHoaDon() {
+     VeKhungBaoQuanh();
     SetColor(9);
     gotoxy(22, 4); cout<<"║";
     gotoxy(35, 4); cout<<"║";
     gotoxy(50, 4);cout<<"║";
     gotoxy(70, 4);cout<<"║";
     Normal();
-    gotoxy(8,4); cout<<" Mã HĐ";gotoxy(24, 4); cout<<" Loại";
-    gotoxy(37, 4);cout<<" Ngày tháng"; gotoxy(52,4); cout<<" Tên nhân viên";
+    gotoxy(8,4); cout<<" Mã HĐ";
+	gotoxy(24, 4); cout<<" Loại";
+    gotoxy(37, 4);cout<<" Ngày tháng";
+	gotoxy(52,4); cout<<" Tên nhân viên";
     gotoxy(72, 4); cout<< " Trị giá hóa đơn";
     SetColor(9);
     gotoxy(8, 5); 
@@ -189,12 +253,14 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taokhungdanhsach4() {
-    taokhung();
+void VeKhungTop10VatTu() {
+   VeKhungBaoQuanh();
     SetColor(9);
     gotoxy(30, 4); cout<<"║"; gotoxy(60, 4); cout<<"║";
     Normal();
-    gotoxy(12,4); cout<<" Mã vật tư";gotoxy(34, 4); cout<<"Tên vật tư";gotoxy(63, 4); cout<<" Tổng doanh thu của vật tư";
+    gotoxy(12,4); cout<<" Mã vật tư";
+	gotoxy(34, 4); cout<<"Tên vật tư";
+	gotoxy(63, 4); cout<<" Tổng doanh thu của vật tư";
     SetColor(9);
     gotoxy(8, 5); 
     for(int i = 0; i <85; i++) {
@@ -216,12 +282,13 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taokhungdanhsach5() {
-    taokhung();
+void VeKhungDoanhThuThang() {
+   VeKhungBaoQuanh();
     SetColor(9);
     gotoxy(38, 4); cout<<"║";
     Normal();
-    gotoxy(15,4); cout<<" Tháng ";gotoxy(45, 4); cout<<" Doanh thu";
+    gotoxy(15,4); cout<<" Tháng ";
+	gotoxy(45, 4); cout<<" Doanh thu";
     SetColor(9);
     gotoxy(8, 5); 
     for(int i = 0; i <85; i++) {
@@ -241,13 +308,14 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taokhungdanhsachhoadon() {
+void VeKhungDanhSachHoaDon() {
     taokhung();
     SetColor(9);
     gotoxy(25, 4); cout<<"║";
     gotoxy(54, 4);cout<<"║";
     Normal();
-    gotoxy(8,4); cout<<" Mã Hóa Đơn";gotoxy(27, 4); cout<<" Loại hóa đơn ";
+    gotoxy(8,4); cout<<" Mã Hóa Đơn";
+	gotoxy(27, 4); cout<<" Loại hóa đơn ";
     gotoxy(56, 4); cout<< " Ngày tháng lập hóa đơn ";
     SetColor(9);
     gotoxy(8, 5); 
@@ -269,37 +337,37 @@ for(int i = 0 ; i < 22; i++) {
     cout<<" Trang: ";
     Normal();
 }
-void taoghichumaso() {
+void VeTieuDeDanhSachVatTu() {
     HighLight();
     gotoxy(40,1); cout<<"   DANH SÁCH VẬT TƯ   ";
     Normal();
     gotoxy(9, 27); cout<<"F1: Thêm VT    F2: Xóa VT    F3: Chỉnh sửa VT    ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumaso2() {
+void VeTieuDeThongKeHoaDon() {
     HighLight();
     gotoxy(40,1); cout<<"  CHI TIẾT HÓA ĐƠN  ";
     Normal();
     gotoxy(9, 27); cout<<"  ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumaso3() {
+void VeTieuDeThongKeHoaDon() {
     HighLight();
     gotoxy(40,1); cout<<"  THỐNG KÊ HÓA ĐƠN  ";
     Normal();
     gotoxy(9, 27); cout<<"  ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumaso4() {
+void VeTieuDeTop10VatTu() {
     HighLight();
     gotoxy(37,1); cout<<"  THỐNG KÊ TOP 10 VẬT TƯ CÓ DOANH THU CAO NHÁT   ";
     Normal();
     gotoxy(9, 27); cout<<"  ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumaso5() {
+void  VeTieuDeDoanhThuThang() {
     HighLight();
     gotoxy(40,1); cout<<"  BẢNG THỐNG KÊ DOANH THU NĂM:      ";
     Normal();
     gotoxy(9, 27); cout<<"  ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumaso1() {
+void VeTieuDeDanhSachNhanVien() {
     SetColor(9);
     gotoxy(15, 4); cout<<"║";
     gotoxy(38, 4); cout<<"║";
@@ -312,19 +380,19 @@ void taoghichumaso1() {
     Normal();
     gotoxy(9, 27); cout<<"F1: Thêm NV    F2: Xóa NV    F3: Chỉnh sửa NV    ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void taoghichumasocase4() {
+void VeTieuDeDanhSachHoaDonCase4() {
     HighLight();
     gotoxy(40,1); cout<<"   DANH SÁCH HÓA ĐƠN   ";
     Normal();
     gotoxy(9, 27); cout<<"F1: Lập hóa đơn    F2: Xem chi tiết hóa đơn    ⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void ghichucase2() {
+void VeTieuDeSapXepTheoTen() {
      HighLight();
     gotoxy(40,1); cout<<"   DANH SÁCH VẬT TƯ SẮP XẾP THEO TÊN   ";
     Normal();
     gotoxy(9, 27); cout<<"⭡: Len    ⭣: Xuong    ESC: Để thoát";
 }
-void huykhungnhap() {
+void XoaKhungNhap() {
     for(int i = 0 ;i < 14;i++) {
         gotoxy(17,7+i);
         for(int j = 0; j < 68;j++){
@@ -332,7 +400,7 @@ void huykhungnhap() {
         }
     }
 }
-void khungnhap() {
+void VeKhungNhap() {
     for(int i = 0 ;i < 14;i++) {
         gotoxy(17,7+i);
         for(int j = 0; j < 68;j++){
@@ -366,19 +434,19 @@ void khungnhap() {
     cout << "╝";
 
 }
-int MenuDong(string td[so_item]){
-  Normal(); system("cls");
-  int chon =0;
-  int i; 
-  for ( i=0; i< so_item ; i++)
-  { gotoxy(cot, dong +i);
-    cout << td[i];
+int HienThiMenuChinh(string menuItems[SO_MUC_MENU]){
+  Normal();
+  system("cls");
+  int viTriChon =0;
+  for (int i=0; i< SO_MUC_MENU ; i++)
+  {gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU + i);
+        cout << menuItems[i];
   }
-  taokhung();
-  taoghichumenu();
+   VeKhungBaoQuanh();
+    VeGhiChuMenu();
   HighLight();
-  gotoxy(cot,dong+chon);
-  cout << td[chon];
+ gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU + viTriChon);
+    cout << menuItems[viTriChon];
   char kytu;
 do {
   kytu = getch();
@@ -387,32 +455,33 @@ do {
     case Up :if (chon > 0)
   			  {
   		        Normal(); 
-              	gotoxy(cot,dong+chon);
-              	cout << td[chon];
+              	gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU +chon);
+              	cout << menuItems[chon];
               	chon --;
               	HighLight();
-              	gotoxy(cot,dong+chon);
-              	cout << td[chon];
+              	gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU+chon);
+              	cout <<  menuItems[chon];
   				
   			  }
   			  break;
-  	case Down :if (chon <so_item-1)
+  	case Down :if (chon < SO_MUC_MENU - 1)
   			  {
   		        Normal();
-              	gotoxy(cot,dong+chon);
-              	cout << td[chon];
+              	gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU +chon);
+              	cout << menuItems[chon];
               	chon ++;
               	HighLight();
-              	gotoxy(cot,dong+chon);
-              	cout << td[chon];
+              	gotoxy(COT_BAT_DAU_MENU, DONG_BAT_DAU_MENU+chon);
+              	cout <<  menuItems[chon];
   				
   			  }
   			  break;
-  	case Enter : return chon+1;
+  	case Enter : 
+		return chon+1;
   }  // end switch
   } while (1);
 }
-void khungxacnhan() {
+void VeKhungXacNhan() {
     for(int i = 0; i < 6; i++) {
         gotoxy(35,12+i);
         for (int j = 0; j < 35; j++) {
@@ -438,7 +507,7 @@ void khungxacnhan() {
     cout << "╝"; 
 }
 void BaoLoi (string s1, string s2, string s3){
-    khungxacnhan();
+    VeKhungXacNhan();
     gotoxy(37,14); cout<< s1;
     gotoxy(37,15); cout<< s2;
     gotoxy(37,16); cout<< s3;
@@ -451,8 +520,8 @@ void BaoLoi (string s1, string s2, string s3){
     }
     }
 
-int xacnhanluachon() {
-    khungxacnhan();
+int  XacNhanLuaChon() {
+    VeKhungXacNhan();
      gotoxy(36,13); cout<<"Bạn có muốn xác nhận lựa chọn";
     gotoxy(36,14);
     for(int i = 0; i <30; i++) {
@@ -3058,5 +3127,6 @@ int main() {
   
 
    
+
 
 
