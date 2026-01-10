@@ -507,6 +507,7 @@ void VeKhungXacNhan() {
     cout << "╝"; 
 }
 void BaoLoi (string s1, string s2, string s3){
+	//s1: dòng 1. s2: dòng 2, s3: dòng 3
     VeKhungXacNhan();
     gotoxy(37,14); cout<< s1;
     gotoxy(37,15); cout<< s2;
@@ -588,13 +589,13 @@ struct Date{
         for (int i = 0; i < input.length(); i++)
             input[i] = toUpper(input[i]);
 
-        // kiem tra VT
+        // kiểm tra VT
         if (input.length() < 2 || input[0] != 'V' || input[1] != 'T') {
             BaoLoi("Mã vật tư phải bắt đầu bằng","VT.","");
             return false;
         }
 
-        // lay phan so
+        // lấy phần số
         string so = "";
         for (int i = 2; i < input.length(); i++) {
             if (input[i] >= '0' && input[i] <= '9')
@@ -825,7 +826,7 @@ struct Date{
 };
 
 
-class lopvattu {
+class  QuanLyVatTu  {
     private:
     string filevattu;
 
@@ -836,37 +837,38 @@ struct VatTu{
     int SoLuongTon;
     int height;
 };
-
+//NodeVatTu
 struct nodeVT {
     VatTu vt;
     nodeVT *left, *right;
 };
 typedef nodeVT* treeVT;
 public:
-treeVT dsvt = NULL;
+treeVT dsvt = NULL;// danh sách vật tư
 int arr[MAX_VatTu];
-treeVT a[MAX_VatTu]; 
+treeVT a[MAX_VatTu]; // mảng vật tư
 int index = 0;
 int kt = 0;
 VatTu vattu = {"", "", "", -1};
 treeVT temptree = NULL;
 
-void Taomanga(treeVT a[]) {
+void Taomanga(treeVT a[])// khởi tạo mảng vật tư
+{
     for(int i = 0; i < MAX_VatTu; i++) {
         a[i] = NULL;
     }
 }
 
-lopvattu(string Filevattu) {
+QuanLyVatTu(string Filevattu) {
     filevattu = Filevattu;
-    Taomanga(a);
-    dsvt = taocaynhiphancanbang(1, MAX_VatTu);
-    Cap_nhat_do_cao(dsvt);
+    Taomanga(a);//khởi tạo mảng vật tư
+    dsvt = Taocaynhiphancanbang(1, MAX_VatTu);
+   CapNhatChieuCao(dsvt);
     mofile();
    }
-void nvvattu(string vattu, string loai, int soluong) {
+void CapNhatSoLuongVatTu(string vattu, string loai, int soluong) {
     temptree = NULL;
-    temptree = Tim_kiem_theo_maVT(dsvt, vattu);
+    temptree = TimKiemTheoMaVT(dsvt, vattu);
     if(temptree!=NULL) {
     if(loai == "N") {
         temptree->vt.SoLuongTon += soluong; 
@@ -877,9 +879,9 @@ void nvvattu(string vattu, string loai, int soluong) {
     } 
 } 
 }
-bool ktravatu(string vattu, string loai, int soluong) {
+bool  KiemTraVatTu(string vattu, string loai, int soluong) {
     temptree = NULL;
-    temptree = Tim_kiem_theo_maVT(dsvt, vattu);
+    temptree =TimKiemTheoMaVT(dsvt, vattu);
     if(temptree!=NULL) {
         if(temptree->vt.SoLuongTon < soluong) {
             BaoLoi("Kho không đủ số lượng","","");
@@ -888,15 +890,15 @@ bool ktravatu(string vattu, string loai, int soluong) {
     } return true;
 }
 
-int Cap_nhat_do_cao(treeVT root) {
+int CapNhatChieuCao(treeVT root) {
     if (root == nullptr) return -1;
-    int height_left = Cap_nhat_do_cao(root->left);
-    int height_right = Cap_nhat_do_cao(root->right);
+    int height_left = CapNhatChieuCao(root->left);
+    int height_right = CapNhatChieuCao(root->right);
     root->vt.height =  1 + max(height_left, height_right);
     return root->vt.height;
 }
 
- treeVT taocaynhiphancanbang(int start, int end)  {
+ treeVT Taocaynhiphancanbang(int start, int end)  {
         int mid = (start + end)/2;
             if(start > end) {
                 return nullptr;
@@ -907,49 +909,49 @@ int Cap_nhat_do_cao(treeVT root) {
                 root->vt.TENVT = "";
                 root->vt.DVT = "";
                 root->vt.SoLuongTon = 0;  
-                root->left = taocaynhiphancanbang(start, mid -1);
-                root->right = taocaynhiphancanbang(mid + 1, end);
+                root->left = Taocaynhiphancanbang(start, mid -1);
+                root->right = Taocaynhiphancanbang(mid + 1, end);
                 return root;
             }
 
-void Duyet_cay_vao_Manng_LNR(treeVT root) {
+void DuyetCayVaoMangLNR(treeVT root) {
  if(root!=NULL){ 
-  Duyet_cay_vao_Manng_LNR(root->left);
+  DuyetCayVaoMangLNR(root->left);
   if(root->vt.TENVT != "") {
    a[index++] = root;}
-  Duyet_cay_vao_Manng_LNR(root->right); 
+  DuyetCayVaoMangLNR(root->right); 
  } 
 } 
 
-treeVT Tim_kiem_theo_maVT(treeVT root, string mavt){ 
+treeVT  TimKiemTheoMaVT(treeVT root, string mavt){ 
     if (root == NULL || root->vt.MAVT == mavt) 
         return root;
     if (root->vt.MAVT < mavt) 
-        return Tim_kiem_theo_maVT(root->right, mavt);
-        return Tim_kiem_theo_maVT(root->left, mavt); 
+        return TimKiemTheoMaVT(root->right, mavt);
+        return TimKiemTheoMaVT(root->left, mavt); 
  
 }
-treeVT Tim_kiem_theo_maVT1(treeVT root, string mavt){ 
+treeVT TimKiemTheoMaVT1(treeVT root, string mavt){ 
     if (root == NULL || (root->vt.MAVT == mavt&&root->vt.TENVT!="")) 
         return root;
     if (root->vt.MAVT < mavt) 
-        return Tim_kiem_theo_maVT1(root->right, mavt);
-        return Tim_kiem_theo_maVT1(root->left, mavt); 
+        return TimKiemTheoMaVT1(root->right, mavt);
+        return TimKiemTheoMaVT1(root->left, mavt); 
  
 }
 
-void nhapVT(VatTu vattu) {
-    treeVT temp = Tim_kiem_theo_maVT(dsvt, vattu.MAVT);
+void  NhapVatTu(VatTu vattu) {
+    treeVT temp = TimKiemTheoMaVT(dsvt, vattu.MAVT);
        if(temp != NULL) {
             temp->vt.MAVT = vattu.MAVT;
              temp ->vt.TENVT = vattu.TENVT;
         temp ->vt.DVT = vattu.DVT;
         temp ->vt.SoLuongTon = vattu.SoLuongTon;
-        } }
-            
+        }
+}
 
-
-int menunhapVT(string s[], int temp, int n) {
+int menunhapVT(string s[], int temp, int n) // s[]: menu, temp: vị trí hiện tại, n: số lượng
+{
     gotoxy(18, 19); cout<<"Enter: Để nhập.";
 
     if (temp == n) {
@@ -957,7 +959,7 @@ int menunhapVT(string s[], int temp, int n) {
     }
   int chon = temp;
     gotoxy(18,10);
-    int a=0;
+    int a=0;// khoảng cách
     for (int i = 0; i < n-2;i++) {
         gotoxy(18,10+a); cout<<s[i]<<endl;
         a+=2;
@@ -3127,6 +3129,7 @@ int main() {
   
 
    
+
 
 
 
