@@ -984,7 +984,7 @@ do {
   if (kytu==0) kytu = getch();
   switch (kytu) {
 
-    case Up :if (chon >0&&chon!=n-1)
+    case Up :if (chon >0&&chon!=n-1)// phím lên
   			  {
   		        Normal(); 
                 if(chon == n-2) {
@@ -999,7 +999,7 @@ do {
               	cout << s[chon];
   			  }
   			  break;
-  	case Down :if (chon <n-2)
+  	case Down :if (chon <n-2)// phím xuống
   			  {
   		        Normal();
               	gotoxy(18,10+chon*2);
@@ -1015,7 +1015,8 @@ do {
   				
   			  }
   			  break;
-    case Right : if(chon == n - 2) {
+    case Right : if(chon == n - 2) // phím phải
+	{
         Normal();
               	gotoxy(60,19);
               	cout << s[chon];
@@ -1026,7 +1027,8 @@ do {
 
 
     } break;
-    case Left : if(chon == n - 1) {
+    case Left : if(chon == n - 1) //phím trái
+	{
           Normal();
               	gotoxy(75,19);
               	cout << s[chon];
@@ -1092,10 +1094,10 @@ void mofile() {
 
 }
 
-void liet_ke_danh_sach_VT_theo_MaSo(int v,int n) {
-    index = 0;
-    Duyet_cay_vao_Manng_LNR(dsvt);
-    kt = index;
+void LietKeDanhSachVatTuTheoMaSo(int v,int n) {
+    index = 0;// chỉ số mảng
+    DuyetCayVaoMangLNR(dsvt);
+    kt = index;//kt:số lượng vật tư
     int cot = 0;
     for(int i = v; i <  n && i< index; i++) {     
         gotoxy(8, 6+cot);
@@ -1127,8 +1129,8 @@ quickSort(arr, p + 1, h);//trị nửa bên phải
 } 
 }
 
-void Liet_ke_danh_sach_VT_theo_Ten(int v, int n) {
-    Duyet_cay_vao_Manng_LNR(dsvt);
+void LietKeDanhSachVatTuTheoTen(int v, int n) {
+   DuyetCayVaoMangLNR(dsvt);
     quickSort(a, 0, index - 1);
     kt = index;
     int cot = 0;
@@ -1149,20 +1151,20 @@ Clear_Tree(root->right);
 delete(root);
 } 
 }
-~lopvattu() {
+~QuanLyVatTu() {
     Clear_Tree(dsvt);
 }
 };
 
-void Case1(lopvattu &X) {
+void Case1(QuanLyVatTu &X) {
     char Luachon;
-    int d = 1;
-    int n = 20;
-    int v = 0;
+    int d = 1;// trang hiện tại
+    int b = 20;//b: bắt đầu
+    int e = 0;//e: kết thúc
     system("cls");
     Normal();
-    taokhungdanhsach();
-    taoghichumaso();
+    VeKhungDanhSach();
+    VeTieuDeDanhSachVatTu();
     do
   {
     int cot = 0;
@@ -1177,30 +1179,31 @@ void Case1(lopvattu &X) {
          cout<<"                             ";
          cot++;
 }
-     X.liet_ke_danh_sach_VT_theo_MaSo(v,n);
+     X.LietKeDanhSachVatTuTheoMaSo(b,e);//b: bắt đầu; e:kết thúc
      HighLight();
-     int m = 0; 
+     int m = 0; //tổng trang
      X.temptree = NULL;
-     if(X.kt %20 == 0) {
+     if(X.kt %20 == 0)//kt số lượng vật tư 
+	 {
          m = X.kt/20;
 
      } else {
         m = X.kt/20 + 1;
      }
-     gotoxy(90,2); cout<<d<<"/"<<m<<" ";
+     gotoxy(90,2); cout<<d<<"/"<<m<<" ";//in ra trang hiện tại và tổng trang
      Normal();
     Luachon = getch(); 
     if (Luachon == 0) 
     Luachon = getch(); 
     switch (Luachon){
-    case F1:{ khungnhap();
+    case F1:{ VeKhungNhap();
         gotoxy(40,8); cout <<"THÊM MỚI VẬT TƯ";
     X.vattu = {"", "", "", -1};
     bool flag = true;
-    int temp = 0;
+    int temp = 0;// vị trí hiện tại
     do{
         Normal();
-        int luachon = X.menunhapVT(nhapvt,temp, 6);
+        int luachon = X.menunhapVT(menuNhapVatTu,temp, 6);
         temp = luachon;
         Normal();
         switch (luachon) {
@@ -1211,7 +1214,7 @@ void Case1(lopvattu &X) {
                 if(X.vattu.SoLuongTon != -1) {
                 gotoxy(45,16); cout<< X.vattu.SoLuongTon;}
             gotoxy(38,12); cout<< X.vattu.TENVT;
-            gotoxy(39,14); cout<< X.vattu.DVT;
+            gotoxy(39,14); cout<< X.vattu.DVT;//DVT: đơn vị tính
                 break;
             } gotoxy(49,10);cout<<"                    ";
             gotoxy(49,10);cout<<X.vattu.MAVT;
@@ -3129,6 +3132,7 @@ int main() {
   
 
    
+
 
 
 
