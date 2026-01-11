@@ -1055,12 +1055,12 @@ void XoaVT(treeVT temp) {
 
 void ChinhsuaVT(treeVT temp, VatTu vattu) {
         temp ->vt.TENVT = vattu.TENVT;
-        temp ->vt.DVT = vattu.DVT;}
+        temp ->vt.DVT = vattu.DVT;// đơn vị tính
 void ghifile(){
      ofstream outputFile(filevattu);      
         if (outputFile.is_open()) {
             index = 0;
-            Duyet_cay_vao_Manng_LNR(dsvt);
+             DuyetCayVaoMangLNR(dsvt);
             for(int i = 0; i < 1000&& a[i] != NULL; i++) {
                 outputFile << a[i] ->vt.MAVT<<","<<a[i]->vt.TENVT<<","<<a[i]->vt.DVT<<","<<a[i]->vt.SoLuongTon<<endl;
             }
@@ -1218,7 +1218,7 @@ void Case1(QuanLyVatTu &X) {
                 break;
             } gotoxy(49,10);cout<<"                    ";
             gotoxy(49,10);cout<<X.vattu.MAVT;
-            X.temptree  = X.Tim_kiem_theo_maVT(X.dsvt, X.vattu.MAVT);
+            X.temptree  = X.TimKiemTheoMaVT(X.dsvt, X.vattu.MAVT);
        if(X.temptree != NULL && X.temptree->vt.TENVT!="") {
             BaoLoi("Mã VT đã có trong danh sách ", "hoặc không đúng định dạng","");
             gotoxy(45,16); cout<< X.vattu.SoLuongTon;
@@ -1246,7 +1246,7 @@ void Case1(QuanLyVatTu &X) {
             BaoLoi("Mã VT không được để trống", "","");
         temp = 0; break;
     }    
-        int t = xacnhanluachon();
+        int t = Xacnhanluachon();
             if(t == 1) {
                 X.nhapVT(X.vattu);  flag = false;
             } else {
@@ -1263,8 +1263,8 @@ void Case1(QuanLyVatTu &X) {
     gotoxy(42,16);cout<<X.vattu.SoLuongTon;}break; 
             }
     } 
-    } while(flag); huykhungnhap(); break;}
-    case F2: {khungnhap(); 
+    } while(flag);  XoaKhungNhap(); break;}
+    case F2: { VeKhungNhap(); 
         gotoxy(40,8); cout <<"XÓA VẬT TƯ";
     int temp = 0;
     bool flag = true;
@@ -1281,7 +1281,7 @@ void Case1(QuanLyVatTu &X) {
                 break;
             }
             gotoxy(47,10); cout<<X.vattu.DVT;
-    X.temptree = X.Tim_kiem_theo_maVT(X.dsvt, X.vattu.MAVT);
+    X.temptree = X.TimKiemTheoMaVT(X.dsvt, X.vattu.MAVT);
     if(X.temptree != NULL) {      
         gotoxy(18,12); cout<<"Tên vật tư: "<< X.temptree->vt.TENVT;
         gotoxy(18,14); cout<<"Đơn vị tính: "<<X.temptree->vt.DVT;
@@ -1296,7 +1296,7 @@ void Case1(QuanLyVatTu &X) {
                 temp = 0;
                 break;
             }
-            int t = xacnhanluachon();
+            int t = Xacnhanluachon();
             if(t == 1) {
                 X.XoaVT(X.temptree);  flag = false;
             } else {
@@ -1317,8 +1317,8 @@ void Case1(QuanLyVatTu &X) {
         break; 
             }
     } 
-    } while(flag); huykhungnhap();break;}
-    case F3: {khungnhap();
+    } while(flag); XoaKhungNhap();break;}
+    case F3: {VeKhungNhap();
         gotoxy(40,8); cout <<"CHỈNH SỬA VẬT TƯ"; 
     int temp = 0;
     bool flag = true;
@@ -1342,7 +1342,7 @@ void Case1(QuanLyVatTu &X) {
                 break;
             }
             gotoxy(47,10); cout<<X.vattu.DVT;
-    X.temptree = X.Tim_kiem_theo_maVT(X.dsvt, X.vattu.MAVT);
+    X.temptree = X.TimKiemTheoMaVT(X.dsvt, X.vattu.MAVT);
     if(X.temptree != NULL) { 
         string s[5] = {"Nhập mã vật tư(VD: VT0099):","Tên vật tư:", "Đơn vị tính:",
  " Hủy "," Xác nhận "};  
@@ -1354,7 +1354,7 @@ void Case1(QuanLyVatTu &X) {
         l = false; t = 5;
     }else {
         BaoLoi("Không tìm thấy mã VT để ","chỉnh sửa","");
-        temp--;
+        temp--;// vị trí hiện tại
 
     } } }break;}
            case 2:  if(t == 3) {
@@ -1372,7 +1372,7 @@ void Case1(QuanLyVatTu &X) {
                 BaoLoi("Hãy nhập vật tư cần xóa","","");
                 temp = 0;
                 break;
-            } int t = xacnhanluachon();
+            } int t = Xacnhanluachon();
             if(t == 1) {
                 if(X.vattu.TENVT=="")
                 {
@@ -1396,7 +1396,7 @@ void Case1(QuanLyVatTu &X) {
     break; 
             }
     } 
-    } while(flag);huykhungnhap(); break;}
+    } while(flag);XoaKhungNhap(); break;}
 
     case Up: {if(d<=1) {
         BaoLoi("Đang là trang đầu tiên!","","");
@@ -1417,8 +1417,8 @@ void Case2(lopvattu &X) {
     int v = 0;
       system("cls");
     Normal();
-    taokhungdanhsach();
-    taoghichumaso();
+     VeKhungDanhSach();
+    VeTieuDeSapXepTheoTen();
     do
   {
     int cot = 0;
@@ -1434,9 +1434,9 @@ void Case2(lopvattu &X) {
          cot++;
     }
 
-     X.Liet_ke_danh_sach_VT_theo_Ten(v,n);
+     X.LietKeDanhSachVatTuTheoTen(v,n);
      HighLight();
-     int m = 0; 
+     int m = 0; // tổng trang
      if(X.kt %20 == 0) {
          m = X.kt/20;
 
@@ -1452,10 +1452,10 @@ void Case2(lopvattu &X) {
    
     case Up: {if(d<=1) {BaoLoi("Đang là trang đầu tiên!","","");
         break;} 
-        v-=20; n-=20; d-=1; break;}
+        b-=20; e-=20; d-=1; break;}
     case Down:{if(n >= X.kt) {
         BaoLoi("Đã là trang cuối cùng!","","");break;}
-        v+=20; n+=20; d+=1;break;}
+        b+=20; e+=20; d+=1;break;}
     case ESC : { return;}
   }}while (true);
 }
@@ -3132,6 +3132,7 @@ int main() {
   
 
    
+
 
 
 
